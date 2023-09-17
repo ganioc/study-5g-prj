@@ -9,14 +9,14 @@ I would like to study the book from Dr. Yang Xuezhi.
 
 $$
 \begin{aligned}
-\lim\limits_{x->x_0} f(x) = A \\ 
-x_0的\delta 邻域,开区间(x_0-\delta, x_0+\delta),N(x_0,\delta)
+\lim\limits_{x \to x_0} f(x) = A \\ 
+x_0的\delta 邻域,开区间(x_0-\delta, x_0+\delta),N(x_0,\delta) \\
 \end{aligned}
 $$
 
 极限定义的思想，以及它所体现的数学的严密逻辑。
 
-n弄懂公式的意义，经过多次的思考训练，建立起条件反射。
+弄懂公式的意义，经过多次的思考训练，建立起条件反射。
 
 ## chap 2
 ### 2.4 连续
@@ -32,7 +32,7 @@ $$
 导数，微积分的基础概念。
 
 $$
-f^{'}(x_0) = \lim\limits_{\Delta x \to 0} \frac {f(x_0 + \Delta x) - f(x_0)} {\Delta x}
+f^{'}(x_0) = \lim\limits_{\Delta x \to 0} \frac {f(x_0 + \Delta x) - f(x_0)} {\Delta x} \\
 
 $$
 
