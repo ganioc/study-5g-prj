@@ -8,10 +8,10 @@ I would like to study the book from Dr. Yang Xuezhi.
 空心邻域，
 
 $$
-\begin{aligned}
+\begin{align}
 \lim\limits_{x \to x_0} f(x) = A \\ 
 x_0的\delta 邻域,开区间(x_0-\delta, x_0+\delta),N(x_0,\delta) \\
-\end{aligned}
+\end{align}
 $$
 
 极限定义的思想，以及它所体现的数学的严密逻辑。
@@ -33,7 +33,6 @@ $$
 
 $$
 f^{'}(x_0) = \lim\limits_{\Delta x \to 0} \frac {f(x_0 + \Delta x) - f(x_0)} {\Delta x} \\
-
 $$
 
 ### 2.6 微分
@@ -79,7 +78,6 @@ $$
 
 $$
 \int_a^b f(x)dx = F(b)-F(a)
-
 $$
 
 ### 2.13 泰勒级数
@@ -87,8 +85,8 @@ $$
 泰勒中值定理，如果有函数$f(x)$在包含$x_0$的某个开区间$(a,b)$内有$n+1$阶导数，则对任意 $x \in (a,b)$,有
 
 $$
-f(x) = f(x_0) + f^{'}(x_0)(x-x_0) + \frac {f^{''}(x_0)} {2!} (x-x_0)^2 + \dotsb  \\ 
-+ \frac {f^{n}(x_0)} {n!}(x-x_0)^n + R_n(x)
+f(x)=f(x_0) + f^{'}(x_0)(x - x_0) + \frac {f^{''}(x_0)} {2!} (x-x_0)^2 + \dotsb + \\
+\frac {f^{n}(x_0)} {n!}(x-x_0)^n + R_n(x)
 $$
 
 其中
@@ -155,7 +153,6 @@ $$
 $$
 x_1(t)*x_2(t)=x_2(t)*x_1(t) \\
 x_1[n]*x_2[n]=x_2[n]*x_1[n] \\
-
 $$
 
 分配律
@@ -212,13 +209,11 @@ $$
 
 那么自然对数是怎么来的呢?
 $$
-(1 + \frac 1 {x})^x \\
-
-e= \frac 1 {0!} +  \frac 1 {1!} + \frac 1 {2!} + \frac 1 {3!} 
-+ \frac 1 {4!} + \dotsi
+e=(1 + \frac 1 {x})^x \\[0.5em]
+e= \frac 1 {0!} +  \frac 1 {1!} + \frac 1 {2!} + \frac 1 {3!} + \frac 1 {4!} + \dotsb 
 $$
-当$x \to \infin$时，这个极限值存在，就是$e$
 
+当$x \to \infin$时，这个极限值存在，就是$e$
 实指数函数的定义:
 $$
 e^x = \lim\limits_{n \to \infin}(1 + \frac x n)^n
@@ -226,13 +221,10 @@ $$
 二项式展开
 $$
 \lim\limits_{n \to \infin}\sum_{i=0}^n {\begin{pmatrix} n \\ i \end{pmatrix}}{\bigg( \frac  x   n \bigg)}^i = 
-
 \lim\limits_{n \to \infin} \sum_{i=0}^n \frac {n!} {n^i(n-i)!i!}x^i
 \\[1em]
-
 e^x = \lim\limits_{n \to \infin}\sum_{i=0}^n\frac 1 {i!} x^i \\
 e^x = 1 + x + \frac 1 {2!} x^2 + \frac 1 {3!}x^3 + \dotsi
-
 $$
 这就是指数函数的麦克劳林级数
 
@@ -251,12 +243,9 @@ $$
 欧拉公式将三角函数的定义域扩展到了复数，建立了三角函数和指数函数之间的关系
 
 $$
-e^{i\pi} + 1 = 0 \\
-
-z = re^{i\theta} \\
-
+e^{i \pi } + 1 = 0 \\
+z = re^{i \theta} \\
 e^{iwt} = \cos wt + i \sin wt
-
 $$
 
 复指数信号，实部为余弦信号，虚部为正弦信号

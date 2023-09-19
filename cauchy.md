@@ -19,7 +19,7 @@ $$
 \end{equation}
 $$
 
-仅当$ad -bc = 0$时成立
+仅当 $ad -bc = 0$ 时成立
 
 ## 三角形式
 这里用到了上面二维形式的结论
@@ -48,11 +48,10 @@ $$
 
 **证明**:
 由上式，两边乘以$(a+b+c)$,转换为
+
 $$
-(a + b + b + c + c+ a)*(\frac 1 {(a+ b)} + \frac 1 {(b+c)} + \frac 1 {(c+a)}] > 9 \\
-
-\Harr  \frac 2 {(a+b)} + \frac 2 {(b+c)} + \frac 2 {(c+a)} > \frac 9 {(a+b+c)} \\
-
+(a + b + b + c + c+ a)*(\frac 1 {(a+ b)} + \frac 1 {(b+c)} + \frac 1 {(c+a)})> 9 \\[0.5em]
+\Harr  \frac 2 {(a+b)} + \frac 2 {(b+c)} + \frac 2 {(c+a)} > \frac 9 {(a+b+c)}
 $$
 
 设 $2x=a+b , \space 2y = b+c ,\space 2z = c+ a$
@@ -68,9 +67,6 @@ $$
 1 + \frac {(y+z)} x + 1 + \frac {(x+z)} y + 1 + \frac {(x+y)} z &> 9 \\
 \frac {(y+z)} x + \frac {(x+z)} y + \frac {(x+y)} z &> 6 \\
 (\frac y x + \frac x y) + (\frac z x + \frac x z) + (\frac y z + \frac z y) &> 6 \\
-
-
-
 \end{split}
 \end{equation}
 $$
@@ -97,7 +93,6 @@ y &= 3 \sqrt{(x-5)} + 4 \sqrt{(9-x)} \\
 &\le \sqrt{(3^2 + 4^2)}\sqrt{(x-5) + (9-x)} \\
 &= 5*2 \\
 &= 10
-
 \end{split}
 \end{equation}
 $$
