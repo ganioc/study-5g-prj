@@ -22,6 +22,27 @@ Specific topics include semiconductor technologies for RF circuits used in a wir
 * noise theory,measuremnt , test
 * RFIC SOC, and testing,
 
+**VLSI的开发过程**
+- 客户需要
+- 决定项目需求
+- 撰写规范
+- 设计synthesis, verification
+  - synthesis, Given an I/O function, develop a procedure to 用已知的材料或工艺来生成器件
+  - verification, 保证生产的设计，满足given I/O function行为
+  - Test, no manufacturing defect,
+- Test development
+- Fabrication, 生产
+- manufacturing test, 生产测试
+- chips to customer, 销售提供
+
+**verification vs test，验证和测试的区别**
+- 验证设计的正确性,通过仿真，硬件仿真等方法
+- 在生产前进行
+- 生产出来的硬件的正确
+- 1, test generation, software process during the design
+- 2, test application, electrical tests applied to hardware
+- 3, on every manufactured device,
+
 ## outline
 - 介绍RF通讯中使用的VLSI器件
   - SoC and SIP
