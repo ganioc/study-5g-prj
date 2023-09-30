@@ -1053,11 +1053,41 @@ $$
 
 点积是内积在$N$维实欧式空间的一种具体形式，而内积的概念比点积更加普遍。
 
+在$N$维复欧式空间当中，内积可以定义为
+$$
+\lang x,y \rang = \sum_{n=1}^{N} x_n \overline{y_n}
+$$
+而周期为$T$的连续周期函数也构成了一个线性空间，其中的内积可以定义为
+$$
+\lang f,g \rang = \int_{-\frac{T}{2}}^{\frac{T}{2}}f(t)\overline{g(t)}dt
+$$
+注意在复数的情况下，定义里面有一个共轭，因为这样才能够保持$\lang x, x \rang$是一个非负实数，满足内积定义的第一条性质。在内积的普遍顶一下，柯西-施瓦茨不等式仍然成立，也就是：
 
+$V$是一个内积空间, $\lang \cdot, \cdot \rang:V \times V \mapsto \Complex$是$V$上的一个内积,$x,y \in V$, 则
+$$
+|\lang x,y \rang| \le \sqrt{\lang x,x \rang} \sqrt{\lang y,y \rang} = ||x|| \cdot ||y||
+$$
+数学家干的事情，把具体的概念搞得越来越抽象，适用范围越来越大，也越来越美。
 
+### 正交与正交基
+既然柯西-施瓦茨不等式在普遍的内积意义下仍然成立，那么也可以在普遍的意义下定义两个矢量的夹角，比如我们模仿$N$维的实欧式空间，这样来定义
+$$
+\cos{\alpha} = \frac{\lang x,y \rang}{||x|| \cdot ||y||}
+$$
+但是一般$\lang x,y \rang$是一个复数，一个角度的余弦怎么可以是一个复数呢?因此我们给内积加上求绝对值的操作。
+$$
+\cos{\alpha} = \frac{|\lang x,y \rang|}{||x|| \cdot ||y||}
+$$
+作为一个角度的余弦值，只能取非负值，余弦函数的值域被砍掉了一半，夹角只能是$[-\frac{\pi}{2}, \frac{\pi}{2}] + 2n\pi$, 多少还是让人不满意。
 
+另外也可以改变一点，做如下定义:
+$$
+\cos{\alpha} = \begin{cases}
+ \frac{|\lang x,y \rang|}{||x|| \cdot ||y||} \space \R{\lang x,y \rang} \ge 0 \\[0.5em]
+  \frac{-|\lang x,y \rang|}{||x|| \cdot ||y||} \space \R{\lang x,y \rang} \lt 0
+\end{cases}
+$$
 
-
-
+有两个角度非常重要。
 
 
