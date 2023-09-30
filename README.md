@@ -1152,7 +1152,123 @@ $$
 
 
 ### 8.7 再看傅里叶变换
+离散傅里叶变换的对象是长度为$N$的离散序列，可以使实序列或者复序列。由于在变换中我们用到了复指数信号，因此我们一般认为信号序列为复数序列，实数序列是复数序列的特殊形式。
 
+所有长度为$N$的复数序列构成了$N$维线性空间$V$, 假设$x,y \in V$, $x=(x_1, x_2, \dotsi, x_N), y=(y_1, y_2, \dotsi, y_N)$, 我们定义$V$上的内积
+$$
+\lang x,y \rang = \sum_{n=1}^{N} x_n \overline{y_n}
+$$
+复指数信号为
+$$
+e_k[n] = e^{j\frac{2\pi}{N}kn}, k=0,1,2,\dotsi, N-1
+$$
+写成矢量的形式:
+$$
+e_k = (e_k[0], e_k[1], \dotsi, e_k[N-1]), k=0,1,2,\dotsi, N-1
+$$
+复指数信号两两正交，也就是
+$$
+\sum_{n=0}^{N-1}e_k[n] \overline{e_l[n]} = \begin{cases}
+N, \space k=l \\
+0, \space k \not = l \\
+\end{cases}
+$$
+具体的例子，假设$N=4$,展开每一项:
+$$
+\begin{aligned}
+e_0[0] &= e^{j0} = 1 \\
+e_0[1] &= e^{j \frac {2\pi}{4}0} = 1 \\
+e_0[2] &= 1 \\
+e_0[3] &= 1 \\
+\end{aligned}
+\\[1em]
+\begin{aligned}
+e_1[0] &= 1 \\
+e_1[1] &= e^{j\frac {2\pi}{4}\cdot 1 \cdot 1}= 0+j = j  \\
+e_1[2] &= e^{j\frac {2\pi}{4}\cdot 1 \cdot 2}= -1  \\
+e_1[3] &= e^{j\frac {2\pi}{4}\cdot 1 \cdot 3}= -j  \\
+\end{aligned}
+\\[1em]
+\begin{aligned}
+e_2[0] &= e^{j\frac {2\pi}{4}\cdot 2 \cdot 0}= 1  \\
+e_2[1] &= e^{j\frac {2\pi}{4}\cdot 2 \cdot 1}= -1  \\
+e_2[2] &= e^{j\frac {2\pi}{4}\cdot 2 \cdot 2}= 1  \\
+e_2[3] &= e^{j\frac {2\pi}{4}\cdot 2 \cdot 3}= -1  \\
+\end{aligned}
+\\[1em]
+\begin{aligned}
+e_3[0] &= e^{j\frac {2\pi}{4}\cdot 3 \cdot 0}= 1  \\
+e_3[1] &= e^{j\frac {2\pi}{4}\cdot 3 \cdot 1}= -j  \\
+e_3[2] &= e^{j\frac {2\pi}{4}\cdot 3 \cdot 2}= -1  \\
+e_3[3] &= e^{j\frac {2\pi}{4}\cdot 3 \cdot 3}= j  \\
+\end{aligned}
+$$
+假设$N=8$,展开每一项:
+
+对比内积的定义，发现这个关系可以写成
+$$
+\lang e_k, e_l \rang = \begin{cases}
+N, \space k=l \\
+0, \space k \not = l \\
+\end{cases}
+$$
+所以, $e_k, k=0,1,\dotsi, N-1$是$V$上的一组正交基。这组基的模不是1，所以不是标准正交基。
+
+离散傅里叶变换是这样定义的
+$$
+X[k] = \sum_{n=0}^{N-1}x[n]e^{-j\frac{2\pi}{N} kn}, \space k=0,1,2,\dotsi,N-1
+$$
+我们把$x[n]$也表示成矢量$x=(x[0],x[1],\dotsi,x[N-1])$
+从而
+$$
+X[k] = \lang x, e_k \rang, \space k=0,1,2,\dotsi,N-1
+$$
+离散傅里叶变换就是信号与一组正交基的内积，如果除以系数$N$，就是信号在这组基下的坐标。
+
+再来看连续信号。持续时间为$T$的有限连续时间信号和周期为$T$的周期信号是一一对应的，也就是等价的。所有持续信号为$T$的信号$x(t), t \in (-\frac{T}2, \frac{T}2)$,也构成了一个线性空间$V$。如果$f,g \in V$,内积定义为
+$$
+\lang f, g \rang = \int_{-\frac{T}2}^{\frac{T}2}f(t) \overline{g(t)}dt
+$$
+令$w_1 = \frac{2\pi}T$, 那么复指数信号定义为
+$$
+e_k(t) = e^{jkw_1t}, \space k\in \Z
+$$
+有如下正交关系
+$$
+\lang e_k, e_l \rang = \begin{cases}
+T , \space k= l \\
+0, \space k \not = l \\
+\end{cases}
+$$
+所以$e_k, \space k \in \Z$也构成了$V$的一组正交基，与离散情况不同的是，这个线性空间是无穷维的，这组正交基包含无穷多个元素。在离散情况下，高于奈奎斯特频率的成分或者为0，或者混叠到低频，因此维数是有限的
+
+$x(t)$表达为傅里叶级数为
+$$
+x(t) = \sum_{k=-\infin}^{\infin}c_ke^{jkw_1t}
+$$
+其中的傅里叶系数$c_k$为
+$$
+c_k = \frac{1}{T}\int_{-\frac{T}2}^{\frac{T}2}x(t)e^{-jkw_1t}dt
+$$
+
+写成内积的形式
+$$
+c_k = \frac{1}{T} \lang x, e_k \rang, \space k \in \Z
+$$
+如果忽略$\frac{1}T$,这个形式与离散傅里叶变换是相同的。
+
+如果让$T \to \infin$,就可以得到傅里叶变换
+$$
+X(w) = \lim\limits_{T \to \infin}Tc_k = \int_{-\infin}^{\infin}e^{-jwt}dt
+$$
+这个时候可以认为基函数是$e_w(t) = e^{jwt}$
+而傅里叶变换仍然可以写成内积的形式:
+$$
+X(w) = \lang x, e_w \rang
+$$
+从线性空间的角度来看，傅里叶系数，傅里叶变换，离散傅里叶变换获得了形式上的统一，都是求信号在一组正交基下的坐标。
+
+我感觉层次逐渐提高了!
 
 
 
