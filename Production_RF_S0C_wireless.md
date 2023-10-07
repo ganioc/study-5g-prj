@@ -1,5 +1,8 @@
 # Productoin Testing of RF and System-on-a-Chip Devices for Wireless Communications
 
+混合信号器件的测试,mixed-signal devices,
+
+
 **Pick-and-Place**
 Using suction, 移动DUT从传送tray到load board contactor socket,
 使用步进电机来实现精确控制。
@@ -91,11 +94,129 @@ Design for Testing, 可测试性设计,
 BIST, in highly complex digital devices and memory devices,
 
 # chap 2 RF and SoC devices
+SOC device的分类
+* RF/RF
+* RF/IF
+* RF/baseband, 
+  * 在WLAN modem里面非常常见, 从输入滤波器，LNA, 直到I/Q输出
+* RF/digital
+  * 在Bluetooth产品里面常见, 架构比较简单, Bluetooth modem,
+  * 属于mixed-signal devices, 
 
+SOC frontend也会提供一些数字信号，比如RSSI, AGC, 
 
+LNA
 
+Amplifier,
+PA, large gain, fast response,这些需求，需要PA的制造工艺是不同的, GaAs, SiGe, 
 
+Mixer,
+* single ended mixer
+* double balanced mixer, excellent isolation, 
+* image-rejection mixer, 2个$90^{\degree}$相移的信号,
 
+RF Switch,
+* absorptive switches,
+* reflective switches, 
+* 使用的技术有两种
+  * PIN, p-type silicon/insulator/n-type , diode switches,
+    * us 级别开关时间，大功率,
+  * GaAs field effect transistor FET based switches,
+    * ns 级别的开关时间, good frequency response to DC,
+
+VGA,
+可变增益放大器, 
+
+Modulator,
+or I/Q modulator, 现在通常是在SOC上实现的, 
+* phase splitter, 90 degree difference, 
+  * 影响接收机的误码率，发射机的EVM, 
+* mixer不应该影响信号的幅度和相位信息
+* Carrier and sidband suppression测试，查看影响, 
+
+Demodulator,
+与调制器类似，方向相反, 
+* single-ended demodulator,
+* differential-ended demodulator, 
+  * noise-reduction properties, 
+* I/Q信号等幅，相位正交，差90度，需要进行测试,
+
+Transmitter,
+测量inband频谱，和带外频谱，locate spurs, 
+
+Receiver,
+I/Q信号输入给ADC, 由基带/DSP进行处理, baseband processor,
+* 灵敏度指标，也就是noise figure, 
+* 输出模拟I/Q, 数字I/Q,
+
+Transceiver,
+同时工作，或者分时工作，
+
+## 2.12 Wireless Radio 架构
+
+Superheterodyne,
+
+ZIF,
+主要问题是
+- dc offset,
+  - LO leakage, self-mixes, 在信号通路上产生一个直流偏移,
+  - 使用补偿方案来克服,类似于noise cancellation, 跟踪背景噪声，将噪声从信号中减去，提高了信噪比, 
+- flicker noise,$1/f$noise, 
+- LO pulling, 
+  - pulling of the LO by the power amplifier output,功放的输出和LO频率相同，会影响LO, distrub or pull the VCO, 
+
+PLL,
+Phase Locked Loop, 产生本振信号,
+* synthesizer lock time,
+* Free running
+* Captured,
+* Phase Locked,
+
+系统级别的测试
+* BER
+* EVM
+
+SoC器件级别的测试
+- VSWR
+- REturn Loss
+- Insertion Loss
+- Gain
+- Gaint flatness
+- Isolation
+- Linearity
+- Noise figure
+- Dynamic range
+- Power Compression
+- 3rd order intermodulation,
+- Third order intecept point, TOI
+- Harmonic Distortion
+- conversion loss/gain
+- Intermodulation distortion,
+- switching speed
+- bandwidth
+- power-added efficiency,
+- spurious output
+- RF-LO rejection,
+- ACPR, ACLR,
+- Phase Noise,
+- I/Q offset,
+- IQ amplitude match
+- IQ phase match,
+- Output power
+- Carrier suppression,
+- Error Vector Magnitude, EVM
+- 
+
+# chap 3 Cost of Test
+## 3.2 Wqfer processing improves Cost of Test,
+之前测试费用<1%, 后来wafer面积增大，数量级地降低了晶片成本, 
+- $6^{''}$ wafer, 152.44mm
+- $8^{''}$ wafer, 203.2mm
+- $12^{''}$ wafer, 300mm
+
+目前测试的成本占总成本的3~30%, 
+
+# chap 4
 
 
 
