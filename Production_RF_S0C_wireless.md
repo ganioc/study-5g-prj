@@ -208,7 +208,7 @@ SoC器件级别的测试
 - 
 
 # chap 3 Cost of Test
-## 3.2 Wqfer processing improves Cost of Test,
+## 3.2 Wafer processing improves Cost of Test,
 之前测试费用<1%, 后来wafer面积增大，数量级地降低了晶片成本, 
 - $6^{''}$ wafer, 152.44mm
 - $8^{''}$ wafer, 203.2mm
@@ -216,7 +216,127 @@ SoC器件级别的测试
 
 目前测试的成本占总成本的3~30%, 
 
-# chap 4
+# chap 4 measuring voltage VS measuring power,
+Tansmission Line Theory VS Lumped-Element Analysis,
+
+
+## 4.10 average power
+$$
+P_{AVG} = \frac{1}{nT_i}\int_0^{nTi}V(t) \times I(t) dt
+$$
+$T_i$是最低频率的周期
+
+## 4.11 Pulse Power
+$$
+P_{pulse} = \frac{1}{\tau}\int_{0}^{\tau}V(t) \times I(t)dt \\
+P_{pulse} = \frac{P_AVG}{Duty cycle}
+$$
+
+## 4.12 Modulated Power
+For signal shapes that have high peak-to-average ratios, the term *crest factor* is introduced：
+$$
+\xi = \frac{peak \space value}{rms \space value}
+$$
+对于正弦信号来说
+$$
+\xi_{sine} = \sqrt{2}
+$$
+对于脉冲信号来说
+$$
+\xi_{pulse} \approx \sqrt{\frac{1}{Duty \space cycle}}
+$$
+
+## 4.13 RMS Power
+The energy of a dc voltage across a resistor is :
+$$
+W_s = \int_{t_0}^{t_0 + T}\frac{V^2}{R}dt
+$$
+If V is a constant dc voltage
+$$
+W_s = \frac{V^2}{R}T
+$$
+The energy of a sinusoidal voltage across the same resistor is:
+$$
+W_s = \int_{t_0}^{t_0 + T}\frac{V_0^2}{R}dt
+$$
+上两式如果相等的话，我们可以算出等效的电压来
+$$
+V_{eff} = \sqrt{\frac{1}{T}\int_{t_0}^{t_0 + T}V_0^2(t)dt}
+$$
+找到式子的均方根,将$V_{eff}$代入功率的计算公式
+$$
+P = \frac{V_{eff}^2}{R}
+$$
+
+## 4.14 Gain
+增益
+$$
+G = P_{out} - P_{in}
+$$
+变频后的增益叫做conversion gain, 转换增益,因为前后测量的频率不同
+
+下变频的RF mixer,或一个SOC接收机:
+$$
+G_{receiver} = P_{out} |_{baseband} - P_{in}|_{RF}
+$$
+上变频的RX mixer或SoC发射机:
+$$
+G_{transmitter} = P_{out}|_{RF} - P_{in}|_{baseband}
+$$
+AWG, Arbitray Waveform Generator, 
+
+## 4.15 Gain flatness
+$$
+Gain\space flatness|_{dB} = G_{max} - G_{min}
+$$
+带内最大的减最小的增益,
+
+### 4.15.2 Automatic Gain Control Flatness
+gain *vs* time frequency sweep is required. 
+
+Ideal AGC device的特性:
+* gain-level changes from one level to the next instantaneous
+* no overshoot or undershoot directly after the gain-level change
+* gain-level changes are linear with the control voltage
+
+An actual AGC device:
+* overshoot, undershot occur during a gain transition
+* Rise and fall time are not instantaneous
+* Varying gain step size,
+
+DNL(differential nonlinearity)
+
+INL(integral nonlinearity), are common for mixed-signal ADCs and DACs
+
+Gain settling time:
+* transition time from one gain state to another, operate in the microseconds
+* settling time, or bouncing of each gain state, gain settling time should be within the specification
+
+为了使power-vs-time, gain-vs-time, frequency-vs-time transition-type 测量， 测试系统必须可以被触发时域的测量,
+
+测试过程:
+- 将输入信号设置为合适的频率和power level
+- 将输出测量设备设置为触发状态
+- 编程SOC AGC为第一个gain level, 触发接收机捕获输出信号
+  - cycle the AGC to the next gain level
+  - Wait long enough to capture the relevant data
+  - Cycle to the next gain level and repeat until the last gain level has been captured
+- 将时域的数据发送给主机进行处理
+
+## 4.16 Power Added Efficiency
+$$
+PAE(\%) =(\frac{P_{RFOUT}}{P_{RFIN} + P_{dc}})\times 100 \%
+$$
+$P_dc$是RF power打开时器件的工作电流
+$$
+P_{dc} = V_{supply} I_{operating}
+$$
+
+## 4.17 Transfer Function for RF Devices
+大多数的RF器件，都是基于diodes, transistors的，
+
+
+
 
 
 
