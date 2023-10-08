@@ -334,6 +334,175 @@ $$
 
 ## 4.17 Transfer Function for RF Devices
 大多数的RF器件，都是基于diodes, transistors的，
+二极管的曲线
+$$
+I = I_s(e^{\alpha V_{tot}} - 1)
+$$
+$I_s$是饱和电流
+$\alpha$是一个常数，和温度与二极管、晶体管的结构特性有关
+$V_{tot}$是二极管上的直流、交流电压之和
+$$
+V_{tot} = V_0 + V_{in}
+$$
+$V_{in}$是一个小信号，小交流信号。可以采用泰勒展开, 
+
+$$
+f(x) = f(x_0) + f^{'}(x_0)(x-x_0) + f^{''}(x_0)(x-x_0)^2 + \dotsi  
+$$
+
+$$
+\begin{aligned}
+I &=I_s(e^{\alpha V_{tot}} - 1) \\
+&= I_0 + V_{in}\frac{dI}{dV} + \frac{1}{2}V_{in}^2\frac{d^2I}{dV^2} + \dotsi
+\end{aligned}
+$$
+根据欧姆定律，两边乘以$R$,我们得到
+$$
+V_{out}=\alpha_{0} + \alpha_{1}V_{in} + \alpha_{2}V_{in}^2 + \alpha_{3}V_{in}^3 + \dotsi
+$$
+所以输出的电压的产物里面存在二次方，三次方的值。
+
+## 4.18 Power Compression
+功率压缩, 1-dB压缩点,
+
+## 4.19 Mixer Conversion Compression
+RF in输入增加时，输出也应该增加。当输出不再增加的时候，比预期的小1dB时，这就是压缩点
+
+## 4.20 Harmonic and Intermodulation Distortion
+harmonic distortion,
+测量谐波失真的参数是THD(Total Harmonic Distortion), $\sqrt{\frac{D}{S}}$
+
+SINAD(Signal, Noise, and Distortion)用来衡量接收到的信号的质量。
+$$
+SINAD(dB) = 10 \log_{10}(\frac{S+N+D}{N+D})
+$$
+
+
+intermodulation distortion,交调失真,
+IP3, IM3, IP, 
+IP3 point will intercept the linear curve before the IP2 point.
+$$
+IP3 = P_{fundamenal} + \frac{P_{3rd}}{2}
+$$
+
+### 4.21.2 Measuring ACPR
+测量方法，将RF下变频到中频，数字采样复数时间电压值，FFT on complex time array, 获得最后的结果。
+
+## 4.22 Filter测试
+
+## 4.23 S-Parameters
+Coupler, 
+* Directional in nature
+* low loss
+* good isolation,
+* Narrowband and poorer performance at lower frequencies
+
+# Chapt 5 Production Testing of SOC Devices
+Wireless SOC devices, functional testing, 
+
+## 5.2 SOC integration levels
+radio由2个部分组成, TX, RX, SOC器件的配置
+
+Case 1: RF-to-RF 配置
+RF SOC, 包含了各个模块在一个single die上，amplifier mixer, filter,RF based,不需要知道digital, baseband signal testing, Modulator or amplifier mixer combination就是一个很好的例子
+
+Case 2: RF-to-Analog(Baseband)配置
+测试系统需要有一路或者多路的模数转换来捕捉模拟信号，RF/mixed-signal SOC, 主要在WLAN SOC配置中发现
+
+Case 3: RF-to-Digital 配置
+在Bluetooth中较多，还包含了baseband decoder, 将baseband信号转换为数字的1和0,测试系统必须有数字的能力.RF的知识，数字的知识，包括:clocking, bit rates, digital thresholds, digital compare, digital capture.
+
+一个典型的Bluetooth radio modem包含3大块:
+* TX
+* RX
+* PLL,
+  
+## 5.15 Synthesizer Settling Time
+定义为
+- synthesizer收到指令切换信道的时间
+- 制定信道的输出功率目标值的10%以内,
+
+testing phase noise, 使用digitizing receiver ,a FFT来获得某个频率上的相位噪声, 
+- power versus time
+  - 取样频率$f_s=300kHz, T_s=3.33us$,测量精度为$T_s/2$
+- differential phase versus time
+
+## 5.19 Digital Control of an SOC
+大多数SOC器件使用SPI来编程芯片的不同的模式，功率级别，信道参数等。SPI总线包括clock, data, enable. 
+
+SPI data, 通常是16-bit,或32-bit的串行word,
+SPI clock, 1~10MHz, 50% duty cycle, 
+
+## 5.20 发射机测试
+parametric measurements, 对于一个SOC来说测试项有4项
+- Transmit output spectrum
+- Modulation characteristics
+- Initial carrier frequency tolerance
+- Carrier frequency drift,
+
+不同的测试，需要的payload data是不一样的, 
+
+device 便成为工作在某个信道上，modulator respond to the pseudorandom pattern to produce a modulated RF output, 
+
+测试20dB带宽，必须 < 1MHz,
+
+为了保持测试的精确性，使用FFT, 2-MHz的采样带宽, desired frequency resolution , 频率分辨率为1 kHz, 那么需要的FFT的点数为:
+$$
+N=\frac{BW}{Freq\space Resolution_{desired}}=\frac{2e^6}{1e^3}= 2,000
+$$
+取2048个点, 这样的测试会快得多,
+
+### 5.20.2 Modulation characteristics
+调制特性, 测试modulator,和本振的稳定性, frequency deviation, pulling effect on the VCO from the power supply, which pulls the carrier frequency from its normal position.
+
+测试系统必须有vector siganl analyzer capabilities, phase和symbol信息都要进行计算。
+
+### 5.20.3 Initial carrier frequency tolerance,
+发射载波的频率精确度, ICFT 必须 < 75 kHz, 测量preamble的最初4bit, ICFT test使用了标准的DH1 packet with PRBS 9 data, 1010, 捕获的信号进行频率解调，每个preamble bit的频率偏移进行平均, 
+
+### 5.20.4 Carrier Frequency Drift
+蓝牙标准要求symbol timing accuracy of +/- 20ppm, baseband crystal 必须be accurate across all operating conditions, temperatures, and life of the product. 
+
+a worst-case phase error be calculated from the longest packet(DH5), 5 slot long, 2870 us, 
+相位误差小于a symbol period的$1/8$, one time slot is +/- 25kHz, 3 time slot is +/- 40kHz, 最大drift rate 必须小于400Hz/s.
+
+### 5.20.5 VCO Drift
+直接测试VCO的频率漂移
+
+## 5.20.6 Frequency pulling and PUshing,
+Power supply的变化，会带来频率的漂移, 
+
+## 5.21 Receiver Tests
+以一个多频段WLAN器件为例
+
+### 5.21.1 Bit Error Rate,
+BER
+$$
+BER\% = \frac{Total \space number\space of \space bad \space bits}{Total \space number \space of \space transmitted \space bits} \times 100
+$$
+
+### 5.21.2 Bit Error Rate Methods,
+
+## 5.22 BER Receiver Measurements
+* Sensitivity BER
+* Carrier-to-interference BER
+* Blocking BER
+* Intermodulation BER
+* Maximum input level BER
+
+## 5.23 EVM Introduction
+A time-domain analysis of a modulated signal, 
+
+### 5.23.1 I/Q Diagrams,
+Viewing a simple voltage-over-time graph, 
+
+# Chapt 6 Fundamentals of Analog and Mixed-Signal Testing
+
+
+
+
+
+
 
 
 
