@@ -497,10 +497,50 @@ A time-domain analysis of a modulated signal,
 Viewing a simple voltage-over-time graph, 
 
 # Chapt 6 Fundamentals of Analog and Mixed-Signal Testing
+RF microchip的发展方向就是集成度越来越高了。每一代的芯片看起来都越来越复杂，包含越来越多的模块。RF收发机、混合信号技术都被集成到了一起。
 
+## 6.2 Sampling Basics and Conventions
+采样技术基础，
 
+DC offset, 
 
+peak-to-peak voltage, 
 
+假定ATE测试系统的digitizer的输入电压范围为
+$$
+\plusmn 2V, \plusmn 1V, \plusmn 250mV,
+$$
+采样的最小分辨率，位数
+$$
+LSB = \frac{MaxRange}{2^{bits} - 1}
+$$
+12 bit digitizer, input range $\plusmn 250mV$, step size 为$244 uV$
+
+## 6.3 傅里叶变换和FFT
+混合信号工程师，在频域内分析问题, 
+
+傅里叶级数, 所有的周期性信号$x(t)$都可以用正弦函数里的叠加来表示
+$$
+x(t) = a_0 + \sum_{n=1}^{\infin}(a_n\cos{(nw_0t)} + b_n\sin{(nw_0t)})
+$$
+$a_0$为直流分量
+
+### 6.3.2 傅里叶变换
+傅里叶理解了所有的信号的运行时间都是有限的，因此他接下来试图描述非周期信号的时频对应关系。
+$$
+X(f) = \int_{-\infin}^{\infin}x(t)e^{-j2\pi ft}dt \\
+x(t) = \int_{-\infin}^{\infin}X(f)e^{j2\pi ft}df
+$$
+
+### 6.3.3 DFT
+离散傅里叶变换
+$$
+X_d(k) = \sum_{n=0}^{N-1}x(n)e^{-\frac{j2\pi kn}{N}} \\
+x(n) = \frac{1}{N}\sum_{k=0}^{N-1}X_d(k)e^{\frac{j2\pi kn}{N}}
+$$
+A 1024-point sampled time-domain signal, $N^2$计算，为了快速计算，使用快速傅里叶转换算法
+
+算法利用了频域的对称性,冲用了一些seed terms, 提供positive frequency spectrum with fewer calculations. FFT requires only $N\ln{(N)}$步骤的算法，只要N是2的次方数。计算量下降了147倍。
 
 
 
