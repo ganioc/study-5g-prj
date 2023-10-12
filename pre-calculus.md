@@ -381,4 +381,136 @@ $$
 # chap 5 Trigonometric functions of real numbers
 实数的三角函数,
 复习
+Unit Circle 单位圆
+$$
+x^2 + y^2 = 1
+$$
+**reference number**
+>$\overline t$ associated with $t$ is the shortest distance along the unit circle between the terminal point determined by t and $x-axis$
+
+circuilar functions
+
+Fundamental Identities
+$$
+\csc{t} = \frac{1}{\sin t} \\[0.5em]
+\sec{t} = \frac{1}{\cos t} \\[0.5em]
+\cot{t} = \frac{1}{\tan t} \\[0.5em]
+\tan{t} = \frac{\sin t}{\cos t} \\[0.5em]
+\cot{t} = \frac{\cos t}{\sin t} \\[0.5em]
+$$
+Pythagorean Identities
+$$
+\sin^2 t + \cos^2 t = 1 \\
+\tan^2 t + 1 = \sec^2 t \\
+1 + \cot^2 t = \csc^2 t \\
+$$
+Periodic Properties of Sine and Cosine
+$$
+\sin{(t + 2\pi)} = \sin{t} \\
+\cos{(t + 2 \pi)} = \cos{t} \\
+$$
+
+Scientists use sine function to model the population of a predator and its prey.
+
+Periodic Properties
+$$
+\tan(x+\pi) = \tan x \\
+\cot(x + \pi) = \cot x \\
+\csc(x + 2\pi) = \csc x \\
+\sec(x + 2\pi) = \sec x \\
+$$
+
+Evaluating Functions
+$$
+\sin t = 1 - \frac{t^3}{3！} + \frac{t^5}{5!} - \frac{t^7}{7!} + \dotsi \\[1em]
+\cos t = 1 - \frac{t^2}{2!} + \frac{t^4}{4!} - \frac{t^6}{6!} + \dotsi \\
+$$
+
+**Harmonic Motion**
+为谐波运动建模, modeling periodic behavior, 
+
+# chap 6 Trigonometric functions of angles
+Radian Measure, radians, rad, 
+Degrees and Radians
+$$
+180^{\circ} = \pi rad \\[0.5em]
+1 rad = \Big(\frac{180}{\pi}\Big)^\circ  \\[1em]
+1^{\circ} = \frac{\pi}{180}rad \\
+$$
+1 rad $\approx 57.296^\circ$, $1^\circ \approx 0.01745$ rad 
+Angular speed
+$$
+\omega = \frac{\theta}{t}
+$$
+hypotenuse, 弦
+opposite, 对边
+adjacent,邻边
+
+**Law of Cosine**
+$$
+a^2 = b^2 + c^2 - 2bc \cos A \\
+b^2 = a^2 + c^2 - 2ac \cos B \\
+c^2 = a^2 + b^2 - 2ab \cos C \\
+$$
+
+# chap 7 Analytic Trignometric
+trigonometric identity
+$$
+\sin^2 \theta + \cos^2 \theta = 1 \\
+\sin{2\theta} = 2\sin \theta \cos{\theta} \\
+\sin{A}\cos{B} = \frac{1}{2}[\sin{A+B} + \sin{A-B}]
+$$
+Guidelines for proving Trigonometric Identities
+>Start with one side
+Use known identities
+Convert to sines and cosines
+
+Addition and Subtraction Formulas
+$$
+\sin{(s + t)} = \sin{s}\cos{t} + \cos{s}\sin{t} \\
+\cos{(s + t)} = \cos{s}\cos{t} - \sin{s}\sin{t} \\
+\tan{(s+t)} = \frac{\tan{s} + \tan{t}}{1 - \tan{s}\tan{t}} \\
+$$
+
+Half-angle formulas
+$$
+\sin^2{x}  = \frac{1-\cos{2x}}{2} \\[0.5em]
+\cos^2{x} = \frac{1 + \cos{2x}}{2} \\[0.5em]
+\tan^2{x} = \frac{1- \cos{2x}}{1+ \cos{2x}} \\[0.5em]
+$$
+
+product-to-sum formulas
+$$
+\sin{u}\cos{v} = \frac{1}{2}[\sin{(u+v)} + \sin{(u-v)}] \\[0.5em]
+\cos{u}\sin{v} = \frac{1}{2}[\sin{(u+v)} - \sin{(u-v)}] \\[0.5em]
+\cos{u}\cos{v} = \frac{1}{2}[\cos{(u+v)} + \cos{(u-v)}] \\[0.5em]
+\sin{u}\sin{v} = \frac{1}{2}[\cos{(u-v)} - \cos{(u+v)}] \\[0.5em]
+$$
+
+sum-to-product formulas
+$$
+\sin x + \sin y = 2\sin{\frac{x+y}{2}}\cos{\frac{x-y}{2}} \\[0.5em]
+\sin x -\sin y = 2\cos{\frac{x+y}{2}}\sin{\frac{x-y}{2}} \\[0.5em]
+\cos{x}+\cos{y}=2\cos{\frac{x+y}{2}}\cos{\frac{x-y}{2}} \\[0.5em]
+\cos{x}-\cos{y}=-2\sin{\frac{x+y}{2}}\sin{\frac{x-y}{2}}\\
+$$
+
+**Inverse Trignometric Functions**
+$$
+\arcsin(x) \space for \space -1 \leqslant x \leqslant 1 \\
+\arccos(x) \space -\frac{\pi}{2} \leqslant x \leqslant \frac{\pi}{2} \\
+$$
+
+# chap 8 Polar coordinates and Vectors
+
+
+
+
+
+
+
+
+
+
+
 
