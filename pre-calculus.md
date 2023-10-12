@@ -1,4 +1,14 @@
 # Pre-calculus,
+
+**参考书**:
+>precalculus mathematics for calculus 5th edition
+Complex variable demystified
+Schaum's outlines complex variable
+complex variable and applications
+Mathematics of the discrete fourier transform, 这是最终要finish的书
+
+
+
 conceptual understanding ,technical skills, in modeling the real-world,
 yard, 码， 3英尺，0.9米，
 => implies
@@ -278,18 +288,97 @@ sketchng Graphs of Rational Functions
 
 # chap 4 Exponential and Logarithmic Functions
 指数和对数方程
+$$
+f(x) = 2^x
+$$
+指数方程是用来描述一些模型的，自然过程，比如人口增长、放射性衰变。
+$$
+f(x)=a^x , \space a > 0 \space and \space a \not = 1
+$$
+自然指数函数
+$$
+e=f(n)=(1+ \frac{1}{n})^n \\
+f(x)=e^x
+$$
+用数学方程来模拟病毒的传播速度
+logistic curve, 
+logittic growth model,
+**计算复利**，
+compound interest,如果有一笔钱$P$, principal,投资的利息率是$i$ per time period.after one time period the interest is $P_i$, and the amount A of money is：
+$$
+A = P + P_i = P(1+i)
+$$
+在$k$periods time, the amount is
+$$
+A = P(1+i)^k
+$$
+如果年利息是$r$,利息的计算是每年计算$n$次。那么年内每段时间的利息率为 $i=r/n$, $t$ 年则会计算$nt$时间段。这就带来了$t$年后，总量的计算
+$$
+A(t) = P(1+\frac{r}{n})^{nt}
+$$
+continuously compounded interest:
+$$
+A(t) = Pe^{rt}
+$$
+>P, principal
+r, interest rate per year
+t, number of years
 
+**对数方程**
+Let $a$ be a positive number with $a\not = 1$, The logarithmic function with base a, denoted by $\log_a$, is define by
+$$
+\log_ax=y  \hArr f(y)=x
+$$
+common logarithm
+$$
+\log x = \log_{10} x
+$$
+科学家们使用对数函数来建模人类对刺激的响应, 如光、声、压力。对声音的强度来说, 物理声强要增加很多倍，我们才会觉得声音加倍响了
+$$
+S = k \log(\frac{I}{I_0})
+$$
+声音，分贝, 
+**自然对数**
+natural logarithm, $\ln x = \log_e x$
 
+Laws of Logarithms
+$$
+log_a(AB) = log_aA + log_aB \\
+log_a(\frac{A}{B}) = log_aA - log_aB \\
+log_a(A^C) = C \log_aA
+$$
 
+**The law of forgetting**
+Ebbinghaus' 遗忘定理, 如果一个任务掌握的程度为$P_0$, 在一段时间$t$后，对技能的掌握技能表示为
+$$
+\log P = \log P_0 - c \log(t+1)
+$$
+$c$为与任务有关的一个常量，$t$为月
+$$
+P=\frac{P_0}{(t+1)^c}
+$$
+改变对数的底
+$$
+y=\log_{b}x \\[0.5em]
+y= \frac{\log_ax}{\log_a b} \\[0.5em]
+\log_b a = \frac{1}{\log_a b}
+$$
+使用上面的定理可以很快的去计算任意底的对数计算
+$$
+\log_8{5} = \frac{\log_{10}5}{\log_{10}8}  \approx 0.77398
+$$
 
+辐射衰变,
+$$
+m(t) = m_0 e^{-rt}
+$$
+half-life,半衰期， 
+牛顿的Law of Cooling,
+$$
+T(t) = 70 + 130 e^{-kt}
+$$
 
-
-
-
-
-
-
-
-
-
+# chap 5 Trigonometric functions of real numbers
+实数的三角函数,
+复习
 
