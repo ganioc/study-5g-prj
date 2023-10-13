@@ -563,6 +563,262 @@ W = F\cdot D = (|F|\cos{\theta})|D| = |F||D|\cos{\theta}
 $$
 
 # chap 9 Systems of Equations and Inequalities
+在现实世界里，许多建模里面涉及很多变量，不能用一个单一方程来描述。比如，天气预报依赖于多种因素，包括:温度、风速、空气压强、湿度...对天线预测来说，科学家使用了多个方程，每个方程都有多个变量。这样的方程系统一起描述了天气情况。
+
+使用*augmented matrix*来解这些方程。matrix equation
+$$
+AX=B
+$$
+$X$ is the unknown matrix, analogous to solving the algebraic equation $ax=b$ for the number $x$
+
+我们考虑矩阵的多钟用法, 包括人口增长，计算机图形学。
+
+多元方程的解法:
+* Substitution Method, 替换法,
+* Elimination Method, 消元法, 
+* 图形法, 找到曲线的交点, 
+
+Linear Equations in Two Variables,
+Modeling with Linear Systems,
+多元线性方程组,
+高斯消元, Gaussian Elimination,
+>1.Augmented matix
+>2. Row-Echelon Form
+>3. Back-Substitution
+
+使用线性方程来进行建模, 
+
+Matrix, row=m, col=n, $m\times n$
+Elementary Row Operations
+$$
+R_i + kR_j \to R_i \\
+kR_i \\
+R_i \leftrightarrow  R_j
+$$
+
+Gauss-Jordan Elimination,
+
+方程组的解的情况
+- No solution, 无解, inconsistent, 
+- One solution, 一个解
+- infinitely many solutions, dependent,
+
+**Algebra of Matrices**
+矩阵代数, 加、减、乘
+矩阵乘法
+$$
+C=AB,  
+$$
+Properties of Matrix Multiplication
+$$
+A(BC) = (AB)C , Associative \space  Property \\
+A(B+C) = AB + AC, \\
+(B+C)A = BA + CA , \space Distributive \space Property \\
+$$
+transition matrix,
+
+Identity matrices,单位矩阵,
+$ A\cdot I_n = A $
+**Inverse of Matrix**
+$ AA^{-1}= A^{-1}A = I_n $
+Finding the Inverse of a Matrix
+$$
+If \space A= \begin{bmatrix}
+    a & b \\
+    c & d \\
+\end{bmatrix}
+then \space A^{-1} = \frac{1}{ad-bc} \begin{bmatrix}
+    d  & -b \\
+    -c &  a
+\end{bmatrix}
+$$
+如果$ad - bc = 0$, 则$A$没有inverse
+
+Solving a Matrix Equation
+$$
+AX=B \\
+X=A^{-1}B \\
+$$
+
+Determinants of matrix
+行列式, 
+$$
+A_{ij} = (-1)^{i+j}M_{ij}
+$$
+
+**Cramer's Rule**
+The linear syste:
+$$
+\begin{cases}
+    ax + by = r \\
+    cx + dy = s \\
+\end{cases}
+$$
+解为
+$$
+x = \frac{\begin{vmatrix}
+    r & b \\
+    s & d \\
+\end{vmatrix}}{\begin{vmatrix}
+    a & b \\
+    c & d \\
+\end{vmatrix}}, \space
+y= \frac{\begin{vmatrix}
+    a & r \\
+    c & s \\
+\end{vmatrix}}{\begin{vmatrix}
+    a & b \\
+    c & d \\
+\end{vmatrix}}
+$$
+
+**Partial Fractions**
+部分分式, 部分分式的分解，decomposition,
+
+**不等式系统**
+Systems of Inequalities
+
+# chap 10 Analytic Geometry
+conic sections, cut in the cone,
+* circle
+* Ellipse
+* parabola
+* hyperbola
+
+analyzing the geometric properties, path of a projectile, 弹道线, 
+
+**parabola**
+>定义, the set of points in the plane equidistant from a fixed point F (called the *focus*) and a fixed line *l*(called the directrix)
+
+axis of symmetry, let $P(x,y)$ be any point on the parabola ,focus point is $(0,P)$, 
+
+the distance from P to F is
+$$
+\sqrt{x^2 + (y-p)^2}
+$$
+the distance from P to the directrix
+$$
+|y - (-p)| = |y + p|
+$$
+parabola的方程为
+$$
+x^2 = 4pyloo
+$$
+抛物线有一个重要的特征，就是作为灯盏、射电望远镜的反射器, 反射聚焦, *reflection property*, 
+
+**Ellipses**
+椭圆的定义
+>the set of all points in the plane the sum of whose distances from two fixed points $F_1$ and $F_2$ is a constant, These two fixed points are the *foci* of the ellipse,
+
+令foci为$(-c,0), (c,0)$,距离之和为$d(P,F_1) + d(P,F_2)=2a$
+$$
+\sqrt{(x+c)^2 + y^2} + \sqrt{(x-c)^2 + y^2} = 2a \\[0.5em]
+(a^2 - c^2)x^2 + a^2y^2 = a^2(a^2 - c^2) \\[0.5em]
+2a>2c, a^2-c^2>0, \\
+\frac{x^2}{a^2} + \frac{y^2}{a^2-c^2}= 1 \\
+$$
+我们设$b^2 = a^2 - c^2, b < a$
+方程整理为
+$$
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
+$$
+major axis is 2a, minor axis is 2b, 
+
+**eccentricity**
+离心率, 
+$$
+e=\frac{c}{a}
+$$
+
+行星轨迹的2个焦点，近焦点叫perihelion,远焦点叫aphelion, 
+
+**hyperbolas**
+双曲线, 定义
+>the set of all points in the plane, the difference of whose distances from two fixed points $F_1$ and $F_2$ is a constant, these 2 fixed points are the *foci* of the hyperbola
+
+$$
+d(P,F_1) - d(P, F_2) = \plusmn 2a \\[0.5em]
+\sqrt{(x+c)^2 + y^2} - \sqrt{(x-c)^2 + y^2} = \plusmn 2a \\[0.5em]
+(c^2 - a^2)x^2 - a^2y^2 = a^2(c^2 - a^2) \\[0.5em]
+\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1 \\
+$$
+equation of the hyperbola, 
+
+center, transverse axis, branches, two parts,
+用于卡塞格伦天线，双曲线的反射特性, 抛物面的交点和双曲线的一个焦点重合，这样平行射入的光汇聚到双曲线的焦点并反射到双曲线的另一个焦点上。
+*Cassegrain-type* telescope
+
+**LORAN system**
+Long Range Navigation system, 1990, 4对基站，实现两条双曲线，双曲线的交点，即可实现定位，好方法!
+
+**Shifted Conics**
+
+坐标轴旋转角度$\phi + \theta$
+原来的x坐标
+$$
+\begin{aligned}
+    x &= r \cos{(\theta +\phi)} \\
+    &= r(\cos{\theta}\cos{\phi} - \sin{\theta}\sin{\phi}) \\
+    &= (r\cos{\theta})\cos{\phi} - (r\sin{\theta})\sin{\phi} \\
+    &= X\cos{\phi} - Y\sin{\phi} \\
+\end{aligned}
+$$
+原来的y坐标
+$$
+\begin{aligned}
+y&=r\sin{(\theta + \phi)} \\
+&= r(\sin{\theta}\cos{\phi} + \cos{\theta}\sin{\phi}) \\
+&= Y\cos{\phi} + X\sin{\phi} \\
+\end{aligned}
+$$
+
+Relation of Axes Formulas
+$$
+x = X\cos{\phi} - Y\sin{\phi} \\
+y = X\sin{\phi} + Y\cos{\phi } \\
+X = x\cos{\phi} + y\sin{\phi } \\
+Y = -x\sin{\phi} + y\cos{\phi} \\
+$$
+
+**General Equation of a Conic**
+广义形式为
+$$
+Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0
+$$
+可以将x,y转换为X,Y坐标系，不包含XY项。
+
+discriminant of the equation, 判断conic的形式$B^2-4AC$
+1. a parabola if $B^2-4AC=0$
+2. an ellipse if $B^2-4AC<0$
+3. a hyperbola if $B^2-4AC>0$
+
+图形学的旋转
+$$
+R=\begin{bmatrix}
+    \cos{\phi} & -\sin{\phi} \\
+    \sin{\phi} & \cos{\phi} \\
+\end{bmatrix}
+$$
+
+**Polar Equations of Conics**
+Equivalent Description of Conics
+
+
+Plane curves and Parametric Equations,
+
+*cycloid*
+>As a circle rolls along a straight line, the curve traced out by a fixed point $P$ on the circumference of the circle is called a cycloid.
+
+最快下降曲线.? 有意思, 
+
+Lissajous figure,
+$ x=A\sin{w_1t}, \space y=B\cos{w_2t} $
+
+# chap 10 Sequences and Series
+
+
+
+
 
 
 
