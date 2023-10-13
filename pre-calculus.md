@@ -6,6 +6,8 @@ Complex variable demystified
 Schaum's outlines complex variable
 complex variable and applications
 Mathematics of the discrete fourier transform, 这是最终要finish的书
+Mathematics in the Modern World,
+Mathematics in the real world,
 
 
 
@@ -502,11 +504,65 @@ $$
 $$
 
 # chap 8 Polar coordinates and Vectors
+**nth Roots of Complex Numbers**
+$$
+w_k = r^{1/n}[\cos{(\frac{\theta + 2k\pi}{n})} + i \sin{(\frac{\theta + 2k\pi}{n})}] \\
+for \space k= 0,1,2,\dotsi, n-1
+$$
+DeMoivre's Theorem
+$$
+w^n = z
+$$
 
+**Fractals**
+Mandelbrot set,$c$ is a complex number, 
+$$
+f(z) = z^2 + c
+$$
+Iterate $z_0, z_1, z_2, \dotsi, $will form a bounded set. 看起来很简单，有机会的话试一试。
 
+**vectors**
+initial point A, terminal point B,
+$$
+u = \overrightharpoon{AB} \\
+v = \overrightharpoon{{BC}} \\
+$$
+vectors in the coordinate plane,
+We represent $v$ as an ordered pair of real numbers,
+$$
+v = \langle a, b \rangle
+$$
+magnitude of a Vector
+$$
+|v| = \sqrt{a^2 + b^2}
+$$
+Algebraic Operations on Vectors
+If $u=\langle a_1, b_1 \rangle$,and $v=\langle a_2, b_2 \rangle$
+$$
+u+v = \langle a_1 + a_2 , b_1 + b_2 \rangle \\
+cu = \langle ca_1, cb_1  \rangle, \space c \in \Z
+$$
 
+**Dot Product**
+Very important, $u\cdot v = a_1a_2 + b_1b_2$, it's a real number, or scalar
+Dot Product Theorem
+$$
+u\cdot u = |u|^2 \\
+u\cdot v = |u| |v| \cos{\theta} \\
+|u -v |^2 = |u|^2 + |v|^2 -2|u| |v| \cos{\theta} \\
+\cos{\theta} = \frac{u\cdot v}{|u| |v|} \\
+$$
 
+The component of $u$ along $v$ can be computed by
+$$
+|u|\cos{\theta} = \frac{|v| |u| \cos{\theta}}{|v|} = \frac{u\cdot v}{|v|}
+$$
+计算功
+$$
+W = F\cdot D = (|F|\cos{\theta})|D| = |F||D|\cos{\theta}
+$$
 
+# chap 9 Systems of Equations and Inequalities
 
 
 
