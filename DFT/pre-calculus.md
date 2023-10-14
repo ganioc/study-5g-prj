@@ -1,10 +1,11 @@
 # Pre-calculus,
 
 **参考书**:
->precalculus mathematics for calculus 5th edition
+>precalculus mathematics for calculus 5th edition, OK
 Complex variable demystified
 Schaum's outlines complex variable
 complex variable and applications
+Complex variables and the laplace transform for engineers
 Mathematics of the discrete fourier transform, 这是最终要finish的书
 Mathematics in the Modern World,
 Mathematics in the real world,
