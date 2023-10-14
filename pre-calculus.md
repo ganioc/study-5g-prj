@@ -815,13 +815,133 @@ Lissajous figure,
 $ x=A\sin{w_1t}, \space y=B\cos{w_2t} $
 
 # chap 10 Sequences and Series
+ 数组，序列, 
+Sequence
+>a set of numbers written in order, 按照某种顺序排列的许多数
 
+递归定义的序列
+**sieve of Eratosthenes**
+去掉所有的质数的倍数
+**Fibonacci Sequence**
+斐波那契数列, 序列，数列, 
+$F_n = F_{n-1} + F_{n-2}$
+是在研究兔子的繁殖时发现的，在自然界存在许多现象满足。
 
+**sigma notation**
+$$
+\sum_{k=1}^{n}a_k = a_1 + a_2 + a_3 + \dotsi + a_n
+$$
+index of summation, summation variable,
 
+**golden ratio**
+$1.618$
 
+算术平均数
+$$
+m=\frac{a+b}{2}
+$$
 
+**Geometric Sequences**
+几何序列, 
+$$
+a,ar, ar^2, ar^3, ar^4,\dotsi \\
+S_n = a + ar + ar^2 + ar^3 + ar^4 + \dotsi \\
+rS_n = ar + ar^2 + a^3 + a^4 + \dotsi \\
+S_n - rS_n = a - ar^n \\[0.5em]
+S_n = \frac{a(1-r^n)}{1-r}
+$$
+r是common ratio
 
+**Finding Patterns**
+triangular numbers,
+square numbers,
+pentagonal numbers,
 
+**Mathematics of Finance**
+金融数学, 
+annuity, amount of an annuity,年金, 
+Amount of an Annuity
+$$
+A_f = R\frac{(1+i)^n -1}{i}
+$$
+
+Mathematical Induction,
+数学归纳法, 
+数学的两大方面是发现和证明, discovery and proof, 
+猜想一个，奇数之和为$n^2 = 1 + 3 + 5 + \dotsi + (2n-1)$
+induction, 归纳法, induction hypothesis, 
+
+**sums of Powers**
+$$
+\sum_{k=1}^n 1 = n \\
+\sum_{k=1}^n k = \frac{n(n+1)}{2} \\
+\sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6} \\
+\sum_{k=1}^n k^3 = \frac{n^2(n+1)^2}{4} \\
+$$
+
+**The Binomial Theorem**
+二项式定理, $a+b$这样的额表达式被称为二项式, then we expand $(a+b)^n$
+
+$$
+\begin{aligned}
+(a+b)^1 &= a+ b \\
+(a+b)^2 &= a^2 + 2ab + b^2 \\
+(a+b)^3 &= a^3 + 3a^2b + 3ab^2 + b^3 \\
+(a+b)^4 &= a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4 \\
+(a+b)^5 &= a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + b^5 \\
+&\vdots
+\end{aligned}
+$$
+
+**The Binomial Coefficient**
+>let n and r be nonnegative integers with $r \leqslant n $,
+$$
+\begin{pmatrix}
+    n \\
+    r \\
+\end{pmatrix} = \frac{n!}{r!(n-r)!} \\[1em]
+\begin{pmatrix}
+    n \\
+    r \\
+\end{pmatrix} = \begin{pmatrix}
+    n \\
+    n-r \\
+\end{pmatrix}
+$$
+
+For any nonnegative integers $r$ and $k$ with $r \leqslant k$
+$$
+\begin{pmatrix}
+    k \\
+    r-1 \\
+\end{pmatrix}+
+\begin{pmatrix}
+    k \\
+    r \\
+\end{pmatrix}=
+\begin{pmatrix}
+    k+1 \\
+    r \\
+\end{pmatrix}
+$$
+
+# chap 12 Limits
+极限的概念, 定义
+$$
+\lim\limits_{x\to a}f(x) = L
+$$
+left and right-hand limits
+$$
+\lim\limits_{x \to a}f(x) = L, \space 
+$$
+if and only if
+$$
+\lim\limits_{x \to a^{-}}f(x) = L = \lim\limits_{x \to a^{+}}f(x)
+$$
+
+roller coaster,
+
+Done
 
 
 
