@@ -338,10 +338,475 @@ $$
 \frac{\partial x}{\partial z} = \frac{\partial x}{\partial \overline{z}}=\frac{1}{2} \\[0.5em]
 \frac{\partial y}{\partial z} = -\frac{i}{2}, \space \frac{\partial y}{\partial \overline{z}}=+\frac{i}{2}
 $$
+使用上述推论
+对$z$求导
+$$
+\frac{\partial}{\partial z}=\frac{\partial x}{\partial z}\frac{\partial}{\partial x} + \frac{\partial y}{\partial z}\frac{\partial}{\partial y} = \frac{1}{2}\frac{\partial}{\partial x} - \frac{i}{2}\frac{\partial}{\partial y}
+$$
 
+对$\overline{z}$求导
+$$
+\frac{\partial}{\partial\overline{z}}=\frac{\partial x}{\partial \overline{z}}\frac{\partial}{\partial x} + \frac{\partial y}{\partial \overline{z}}\frac{\partial}{\partial y}=\frac{1}{2}\frac{\partial}{\partial x} + \frac{i}{2}\frac{\partial}{\partial y}
+$$
 
 
 No dependence on $\overline z$ 意味着real and imaginary parts must independently vanish. This gives us the Cauchy-Riemann equations.
+
+Now we use these results to write the derivatives $df/dz$ and $df/d\overline{z}$ in terms of derivatives with respect to the real variables $x$ and $y$
+$$
+\begin{aligned}
+    \frac{\partial f}{\partial z} &=\frac{1}{2}(\frac{\partial}{\partial x} -i\frac{\partial}{\partial y})f \\[0.5em]
+    &=\frac{1}{2}(\frac{\partial}{\partial x} -i\frac{\partial}{\partial y})(u+iv) \\[0.5em]
+    &=\frac{1}{2}(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y})+\frac{i}{2}(\frac{\partial v}{\partial x} - \frac{\partial u}{\partial y})\\[1em]
+\frac{\partial f}{\partial \overline{z}} &=\frac{1}{2}(\frac{\partial}{\partial x} + i\frac{\partial}{\partial y})f \\[0.5em]
+    &=\frac{1}{2}(\frac{\partial}{\partial x} +i\frac{\partial}{\partial y})(u+iv) \\[0.5em]
+    &=\frac{1}{2}(\frac{\partial u}{\partial x} - \frac{\partial v}{\partial y})+\frac{i}{2}(\frac{\partial v}{\partial x}+\frac{\partial u}{\partial y})
+\end{aligned}
+$$
+
+The Cauchy-Riemann Equations,
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \\[0.5em]
+\frac{\partial u}{\partial y} =-\frac{\partial v}{\partial x} \\
+$$
+$f(z) = u(x,y) +iv(x,y), z_0 = x_0 + iy_0, \Delta{z}=\Delta{x}+i\Delta{y}, w=f(z)$
+For notational convenience
+$$
+\begin{aligned}
+\Delta{w}&= f(z_0+\Delta{z}) - f(z_0) \\
+    &= u(x_0+\Delta{x}, y_0+\Delta{y}) - u(x_0,y_0) \\
+&\space +i[v(x_0+\Delta{x}, y_0+\Delta{y})-v(x_0,y_0)]
+\end{aligned}
+$$
+偏微分
+
+如果偏微分$u_x, u_y,v_x,v_y$在点$(x_0,y_0)$上连续， 并满足柯西-莱曼方程，那么
+$$
+f'(z_0)=u_x(x_0,y_0)+iv_x(x_0,y_0) \\
+f'(z_0)=v_y(x_0,y_0)-iu_y(x_0,y_0) \\
+$$
+另外，由上可知，$df/dz$的定义
+$$
+\frac{df}{dz}=\frac{\partial f}{\partial x} -i\frac{\partial f}{\partial y    }
+$$
+
+极坐标表示
+$f(z)=u(r,\theta)+iv(r,\theta)$
+柯西-莱曼公式的极坐标表示为
+$$
+\frac{\partial u}{\partial r} = \frac{1}{r}\frac{\partial v}{\partial \theta} \\[0.5em]
+\frac{\partial v}{\partial r} = -\frac{1}{r}\frac{\partial u}{\partial \theta}
+$$
+同样
+$$
+f'(z)=e^{-i\theta}(\frac{\partial u}{\partial r} + i \frac{\partial v}{\partial r})
+$$
+一个数学家说这个复方程是regular、holomorphic的，正则函数，解析函数,在点的周围满足柯西-莱曼方程，
+
+Singularity,
+如果$f(z)$在点$z_0$上不满足analytic, 但是在包含$z_0$的邻域内满足analytic,我们说$z_0$是奇异的，singular point of $z_0$,在讨论复函数的级数展开时, singularities,关于奇特性的讨论是重要问题。
+
+满足analytic的两个必要条件
+- $f(z)$必须是连续的
+- 满足柯西-莱曼方程
+
+充分条件为:
+- 在$z_0$的邻域$\epsilon$-neighborhood有定义
+- 在邻域满足一阶偏导, $u_x, u_y, v_x, v_y$
+- 偏导在$z_0$连续，且满足柯西-莱曼方程
+
+解析函数的性质
+Let $f(z)$和$g(z)$为域$D$内的两个解析函数,那么
+* sum and difference $f\plusmn g$ is also analytic in $D$
+* product $f(z)g(z)$ is analytic in $D$
+* If $g(z)$ does not vanish at any pint in $D$, then the quotient $f(z)/g(z)$ is analytic in $D$
+* The composition of two analytic functions $g[f(z)]$ or $f[g(z)]$ is analytic in $D$
+
+Harmonic Functions
+调和函数?满足Laplace's equation in some domain of the $x$-$y$ plane
+$$
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0
+$$
+这里，我们假定$u(x,y)$具有连续的一阶，二阶偏导数, 一个重要的调和函数应用在物理学和工程学，是静电学领域。electrostatics,柯西-莱曼等式可以用来发现调和函数
+
+如果$f(z)$是analytic function in doomain D, 那么u(x,y), v(x,y)都是调和函数。
+
+Harmonic Conjugate,
+suppose that $u$ and $v$ are two harmonic functions in domain $D$. If their first-order partial derivatives satisfy the Cauchy-Riemann equations, then we say that $v$ is the harmonic conjugate of $u$.
+
+A function $f(z)=u(x,y)+iv(x,y)$ is analytic if and only if $v(x,y)$ is the harmonic conjugate of $u(x,y)$
+
+例如, $u(x,y)=e^{-y}\sin{x}$ 是一个harmonic functiona吗?如果是的话，写下一个解析函数$f(z)$, $u(x,y)$是实部。
+
+$$
+\frac{\partial u}{\partial x}=e^{-y}\cos{x} \space \Rightarrow \frac{\partial^2 u}{\partial x^2}=-e^{-y}\sin{x}
+$$
+$$
+\frac{\partial u}{\partial y}=-e^{-y}\sin{x} \space \Rightarrow \frac{\partial^2 u}{\partial y^2}=e^{-y}\sin{x}
+$$
+满足harmonic function的要求,
+再使用Cauch-Riemann方程，
+$$
+\frac{\partial u}{\partial x} = e^{-y}\cos{x} = \frac{\partial v}{\partial y} \\
+\frac{\partial u}{\partial y} = -e^{-y}\sin{x}=-\frac{\partial v}{\partial x} \\
+$$
+则可以得到$v(x,y)=-e^{-y}\cos{x}$,因此我们要求得解析函数为
+$$
+f(z)=u(x,y)+iv(x,y)=e^{-y}\sin{x} -ie^{-y}\cos{x}
+$$
+
+
+反射原理, Reflection Principle,
+reflection principle允许我们能够如何成立 $\overline{f(z)} = f(\overline{z})$
+
+# chap 4 elementary functions, 初等函数
+**Complex Polynomials**
+复多项式函数,
+$$
+f(z)=a_0 + a_1z+a_2z^2+\dotsi+a_nz^n
+$$
+The highest power $n$ is the *degree* of the polynomials
+$a_j$是常量，叫做coefficients,系数,可以是复数,
+
+可以理解为拥有复系数的实变量$x$和$y$的多项式,
+
+**The Complex Exponential**
+复指数函数, 
+$$
+f(z)=e^z=e^xe^{iy}
+$$
+使用欧拉公式，$e^{iy}=\cos{y}+i\sin{y}  $
+则复指数函数的实部和虚部为
+$$
+Re(e^z)=u(x,y)=e^x\cos{y} \\
+Im(e^z)=v(x,y)=e^x\sin{y} \\
+$$
+
+$e^z$ 是一个周期性函数，周期为$2k\pi i$, k是一个整数,
+
+argument,是相位、角度。
+$$
+arg(e^z)=y+2n\pi, \space n=0,\plusmn1,\plusmn2,\dotsi
+$$
+logarithm is the inverse of exponential,
+$$
+e^{\ln{x}}=x
+$$
+因为$e^z$是一个周期函数，所以复对数有很多个解，
+Let $z=e^w$, then $w=\ln{z}$
+使用极坐标方式, $z=re^{i\theta}$
+$$
+w=\ln{z}=\ln{re^{i\theta}}=\ln{r}+\ln{e^{i\theta}}=\ln{r}+i\theta
+$$
+using the fact that the cosine and sine functions are $2\pi$ periodic,
+$$
+w=\ln{r} + i(\theta + 2k\pi), \space k=0,\plusmn 1,\plusmn 2, \dotsi
+$$
+复自然对数是一个多值的函数。$k=0$时，为主值, principal value, 或principal branch of $\ln{z}$. 此时我们将argument限定于$0 \le \theta \le 2\pi$ 或 $-\pi \le \pi$
+
+**Trignometric Functions, 复三角函数**
+$$
+\cos{z} = \frac{e^{iz} + e^{-iz}}{2 } \\[0.5em]
+\sin{z} = \frac{e^{iz} - e^{-iz}}{2i} \\[0.5em]
+\tan{z} = -i\frac{e^{iz} - e^{-iz}}{e^{iz}+e^{-iz}} \\[0.5em]
+\cot{z} = i\frac{e^{iz} + e^{-iz}}{e^{iz}-e^{-iz}} \\[0.5em]
+\sec{z} = \frac{2}{e^{iz}+ e^{-iz}}\\[0.5em]
+\csc{z} = \frac{2i}{e^{iz} - e^{-iz}}\\[0.5em]
+$$
+$\cos^2(z) + \sin^2(z) = 1$
+三角函数的反函数
+$$
+\begin{aligned}
+\cos^{-1}z &=\frac{1}{i}\ln{(z+\sqrt{z^2-1})} \\
+\sin^{-1}z &=\frac{1}{i}\ln{iz + \sqrt{1-z^2}} \\
+\tan^{-1}z &=\frac{1}{2i}\ln{\frac{1+iz}{1-iz}} \\
+\sec^{-1}z &=\frac{1}{i}\ln(\frac{1+\sqrt{1-z^2}}{z}) \\
+\csc^{-1}z &=\frac{1}{i}\ln(\frac{i+\sqrt{z^2-1}}{z}) \\
+\cot^{-1}z &=\frac{1}{2i}\ln(\frac{z+i}{z-i}) \\
+\end{aligned}
+$$
+
+**Hyperbolic functiosn, 双曲线函数**
+$$
+\cosh{z}=\frac{e^z+e^{-z}}{2} \\
+\sinh{z}=\frac{e^z-e^{-z}}{2} \\
+$$
+这些函数有一些有趣的特性。$|cosh{z}|$的模在$y$轴的方向上有震荡,
+
+$$
+\cosh{z} = \cos{y}\cosh{x} + i\sin{y}\sinh{x}
+$$
+一些关系，双曲线函数和三角函数之间的一些关系，for complex arguments,
+$$
+\begin{aligned}
+    \cosh{iz} &= \cos z \\
+\sinh{iz} &= i\sin z \\
+\cos{iz} &= \cosh z \\
+\sin{iz} &= i\sinh z \\
+\end{aligned}
+$$
+下列恒等式
+$$
+\cosh{(-z)}=\cosh{z} \\
+\sinh(-z)=-\sinh{z} \\
+\cosh^2z-\sinh^2z = 1 \\
+\sinh(z+w) = \sinh{z}\cosh{w} + \cosh{z}\sinh{w} \\
+\cosh(z+w) = \cosh{z}\cosh{w} + \sinh{z}\sinh{w}\\
+$$
+包含三角函数的恒等式
+$$
+\sinh{z}=\sinh{x}\cos{y} + i\cosh{x}\sin{y} \\
+\cosh{z}=\cosh{x}\cos{y} + i\sinh{x}\sin{y} \\
+|\sinh{z}|^2 = \sinh^2{x} + \sin^2{y} \\
+|\cosh{z}|^2 = \sinh^2{x} + \cos^2{y} \\
+$$
+双曲线函数的周期也是 $2\pi i$
+零点为:
+$$
+\cosh{z}=0, if\space z=(\frac{\pi}{2} + n\pi), n=0,\plusmn1,\plusmn2,\dotsi \\
+\sinh{z}=0, if\space z=n\pi i, n=0,\plusmn1, \plusmn2, \dotsi
+$$
+
+$$
+\tanh{z} = \frac{e^z - e^{-z}}{e^z + e^{-z}} \\
+sech z = \frac{2}{e^z + e^{-z}} \\
+csch z = \frac{2}{e^z - e^{-z}} \\
+$$
+With the analogous identities
+$$
+1- \tanh^2 z = sech^2z \\
+\tanh(z\plusmn w) = \frac{\tanh{z}\plusmn \tanh w}{1\plusmn \tanh{z}\tanh{w}}
+$$
+反函数
+$$
+\cosh^{-1}z = \ln{(z + \sqrt{z^2 - 1})} \\
+\sinh^{-1}z = \ln{(z + \sqrt{z^2 + 1})} \\
+\tanh^{-1}z = \frac{1}{2}\ln{(\frac{1+z}{1-z})} \\
+$$
+
+**Complex Exponents ,复指数**
+$f(z)=z^{\alpha}$, $\alpha$是一个复数,$f(z)=z^\alpha=e^{\alpha\ln{z}}$
+$$
+f(z)^{g(z)}=e^{g(z)\ln[f(z)]}
+$$
+从定义来看，复数$z$的幂是多值函数,
+
+例子: 求$i^i$的值
+Solution:
+先求$\ln{i}$
+$$
+\begin{aligned}
+    \ln{i}&=\ln{(1\cdot e^{i\pi/2})} \\
+    &= \ln{1} + i(\frac{\pi}{2} + 2n\pi) \\
+    &=  i(\frac{\pi}{2} + 2n\pi), \space n=0,\plusmn1,\plusmn2,\dotsi \\
+\end{aligned}
+$$
+再代入
+$$
+\begin{aligned}
+i^i &= e^{(i\ln{i})}  \\
+    &= e^{i[\frac{\pi}{2} + 2n\pi]} \\
+    &= e^{-(\frac{\pi}{2} + 2n\pi)}, \space n=0,\plusmn1,\plusmn2,\dotsi \\
+\end{aligned}
+$$
+$i^i$的值都是实数,奇怪的是, 
+
+**初等函数求导**
+指数函数, exponential function,
+$$
+\frac{d}{dz}e^z = e^z
+$$
+多项式函数
+$$
+\frac{df}{dz}= a_1 + 2a_2z + 3a_3z^2 + \dotsi + na_nz^{n-1}
+$$
+对数函数
+$$
+\ln{z} = \ln{r} + i\theta,
+$$
+$\theta$限制在域$\alpha \le \theta \le \alpha + 2\pi$,这样我们就有了一个单值函数，实部、虚部为
+$$
+u=\ln{r}, v=\theta,
+$$
+该函数满足Cauchy-Riemann方程,
+$$
+f'(z)=e^{-i\theta}(\frac{\partial u}{\partial r} + i\frac{\partial v}{\partial r})
+$$
+因此我们得到
+$$
+\frac{d}{dz}\ln{z}=e^{-i\theta}(\frac{\partial u}{\partial r} + i\frac{\partial v}{\partial r})=e^{-i\theta}(\frac{1}{r}+i0)=\frac{1}{re^{i\theta}}
+$$
+所以于实数的情况相同,
+$$
+\frac{d}{dz}\ln{z}=\frac{1}{z}
+$$
+when $|z| \gt 0$, and $\alpha \lt \arg{z} \lt \alpha + 2\pi$
+三角函数的导数
+$$
+\cos{z}=\cos(x+iy)=\cos{x}\cosh{y}-i\sin{x}\sinh{y} 
+$$
+对$u$,$v$求偏导
+$$
+\frac{\partial u}{\partial x} = -\sin{x}\cosh{y} \\[0.5em]
+\frac{\partial u}{\partial y} = \cos{x}\sinh{y}  \\[0.5em]
+\frac{\partial v}{\partial x} = -\cos{x}\sinh{y} \\[0.5em]
+\frac{\partial v}{\partial y} = -\sin{x}\cosh{y} \\[0.5em]
+$$
+从中看出
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \\[0.5em]
+\frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} \\
+$$
+因此是满足Cauchy-Riemann等式,因此
+$$
+f'(z) = \frac{\partial u}{\partial x} +i\frac{\partial v}{\partial x} \\
+=-\sin{x}\cosh{y} -i\cos{x}\sinh{y}\\
+$$
+另外我们已经知道$\sin{z}=\sin{x}\cosh{y}+i\cos{x}\sinh{y}$, 则
+$$
+\frac{d}{dz}\cos{z} = -\sin{z}
+$$
+对于$sin{z}$, 
+$$
+\begin{aligned}
+\frac{d}{dz}\sin{z}&=\cos{z} \\
+\frac{d}{dz}\tan{z}&= \sec^2{z} \\
+\frac{d}{dz}\cot{z}&= -\csc^2{z} \\
+\frac{d}{dz}\sec{z}&=\sec{z}\tan{z} \\
+\frac{d}{dz}\csc{z}&=-\csc{z}\cot{z} \\
+\end{aligned}
+$$
+对双曲函数的求导
+$$
+\begin{aligned}
+\frac{d}{dz}\cosh{z}&=\sinh{z} \\
+\frac{d}{dz}\sinh{z}&=\cosh{z} \\
+\frac{d}{dz}\tanh{z}&=sech^2{z} \\
+\frac{d}{dz}sech{z}&=-sech{z}\tanh{z} \\
+\end{aligned}
+$$
+指数函数的求导
+$$
+\frac{d}{dz}z^{\alpha} = \alpha z^{\alpha -1}
+$$
+
+**Branches**
+?一个多值函数，随着$z$在一个圆上的移动，在复平面上运动，周期性重复。在$0 \leqslant \theta \leqslant 2\pi$的范围内，函数是单值的。此时我们称我们在函数的一个branch里，当$\theta$大于$2\pi$时，函数会重复，此时我们说进入了函数的另一个branch. 一个多值函数会这样重复自己，无限重复下去。
+
+branch cut, The point from which the branch cut originates is called a branch point. 函数不能穿过branch cut, 这样我们就可以是复函数称为一个单值函数了。
+
+# chap 5, Sequences and Series
+序列和级数, 在实数领域，我们可以用一个实变量的无限级数扩展来表示一个函数。那么对于复函数来说我们也可以把它展成级数。
+
+**sequences**
+序列表达为$\lbrace f(n) \rbrace$, or $\lbrace a_n \rbrace$
+
+The limit of a sequence
+判断一个序列是否会收敛、逼近一个有限值，当$n$趋于无限值时。其定义为, 给定任何一个正值$\epsilon$,可以找到一个数$N$,使得
+$$
+|a_n - \ell| \lt \epsilon, \space for \space all \space n \gt N
+$$
+我们记为
+$$
+\lim\limits_{n to \infin}a_n = \ell
+$$
+收敛convergent, 发散divergent,给定序列的极限是唯一的，不可能收敛到多个值。
+
+复函数的序列,
+$$
+\lim\limits_{n \to \infin}f_n(z) = f(z)
+$$
+同样定义极限, $|f_n(z) - f(z)| \lt \epsilon$ , for $n \gt N$
+
+**Infinite Series, 无限级数**
+将序列的每一项都加起来，我们得到一个级数, partial sums, 
+Let $\lbrace a_n(z) \rbrace$ be some complex sequence,我们将partial sums, 写为:部分和，部分总和, 
+$$
+S_n = a_1(z) + a_2(z)+ a_3(z) + \dotsi + a_n(z) \\
+\sum_{n=1}^{\infin}a_n(z)
+$$
+如果级数的极限存在，那么级数是收敛的。
+$$
+\lim\limits_{n \to \infin}S_n(z) = S(z)
+$$
+收敛的一个条件是
+$$
+\lim\limits_{n \to \infin}a_n(z) = 0
+$$
+**Convergence 收敛**
+复分析里的级数的一个重要概念是radius of convergence, 收敛半径，R。在复平面的哪个区域里面级数收敛。级数只在unit disc里面收敛。我们说。
+
+monotonic increasing, $a_{n+1} \geqslant a_n$, 单调增
+
+monotonic decreasing, $a_{n+1} \leqslant a_n$, 单调递减
+
+The sequence is bounded, $|a_n| < M$, bounded above by some constant $M$
+
+Cauchy's convergence criterion,
+So, $\{a_n\}$ converges if given an $\epsilon > 0$, we can find an $N$ such that
+$$
+|a_m - a_n| \lt \epsilon, \space m,n \gt N
+$$
+
+**复级数的收敛**
+一种方法是检查级数的实部、虚部的收敛性。$\sum a_j + ib_j$收敛的话,$\sum a_j$和$\sum b_j$两者也都收敛。
+
+$\sum a_n$绝对收敛，converges absolutely, 就是说下式收敛
+$$
+\sum_{n=1}^{\infin}|a_n|
+$$
+ratio test, 序列的比例测试
+$$
+\lim\limits_{n \to \infin}|\frac{a_{n+1}}{a_n}| = R
+$$
+
+* 当$R<1$时， 级数绝对收敛
+* 当$R>1$时，级数发散
+
+nth root test, 根测试
+$$
+\lim\limits_{n \to \infin}\sqrt[n]{|a_n|} = R
+$$
+$R <1$,级数绝对收敛，否则发散
+
+Raabe's test, 
+$$
+\lim\limits_{n \to \infin} n(1-|\frac{a_{n+1}}{a_n}|) = R
+$$
+$R < 1$,级数绝对收敛，否则发散
+
+Weierstrass M-test, 
+$|a_n(z)| \leqslant M_n$, 如果$M_n$不依赖于$z$, 如果$\sum M_n$收敛，那么$\sum a_n(z)$也收敛。
+
+**Uniformly Converging Series**
+一致收敛级数,
+在一个域内, for all $z$, of the complex plane, the convergence is uniform. 
+$$
+|a_n(z) - R| < \epsilon, for \space n > N
+$$
+一致收敛到$R$
+
+Power Series,幂级数
+$$
+a_0 + a_1z+a_2z^2 + \dotsi = \sum_{n=0}^{\infin}a_n(z-z_0)^n
+$$
+$a_n$是常数, 成为幂级数. 当级数收敛时, $|z-z_0|< R$, $R$为收敛半径, radius of convergence. 在复分析中，级数收敛的区域通常是一个disc, 因此术语term, 就有了一个实际的几何意义。
+
+**Taylor and Maclaurin Series**
+泰勒和麦克劳林级数,
+如$f(z)$在复平面的某个区域里是解析的, analytic, $z_0$作为这个区域里的一个点。$f(z)$可以用幂级数展开, 就是泰勒级数
+$$
+f(z) = f(z_0) + f'(z_0)(z-z_0) + \frac{f''(z_0)}{2!}(z-z_0)^2 + \dotsi 
+    + \frac{f^{n}(z_0)}{n!}(z-z_0)^n + \dotsi
+$$
+如果$z_0=0$, 那么展开的就是麦克劳林级数
+
+幂级数的原理,
+
+
+
+
+
 
 
 
