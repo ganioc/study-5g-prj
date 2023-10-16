@@ -803,11 +803,100 @@ $$
 
 幂级数的原理,
 
+一些常见的级数
+$$
+e^z = 1+z+\frac{1}{2!}^2 +\dotsi+ \frac{1}{n!}z^n = \sum_{n=0}^{\infin}\frac{1}{n!}z^n\\[0.5em]
+\cos{z}=1-\frac{z^2}{2!}+\frac{z^4}{4!}-\frac{z^6}{6!}+\dotsi+\frac{(-1)^n}{(2n)!}z^{2n}=\sum_{n=1}^{\infin}\frac{(-1)^n}{(2n)!}z^{2n}\\[0.5em]
+\sin{z}=z-\frac{z^3}{3!}+\frac{z^5}{5!}-\frac{z^7}{7!}+\dotsi+\frac{(-1)^(n-1)}{(2n-1)!}z^{2n-1} = \sum_{n=1}^{\infin}\frac{(-1)^{n-1}}{(2n-1)!}z^{2n-1}\\[0.5em]
+\ln{(1+z)}=z-\frac{z^2}{2}+\frac{z^3}{3}+\dotsi+\frac{(-1)^{n-1}}{n}z^n = \sum_{n=1}^{\infin}\frac{(-1)^{n-1}}{n}z^{n}\\[0.5em]
+\tan^{-1}z=z-\frac{z^3}{3}+\frac{z^5}{5}-\dotsi+\frac{(-1)^{n-1}}{2n-1}z^{2n-1}=\sum_{n=1}^{\infin}\frac{(-1)^{n-1}}{2n-1}z^{2n-1}\\[0.5em]
+$$
+If $|r|\lt 1$, then the geometric series converses as,几何级数的收敛值为:
+$$
+\sum_{n=0}^{\infin}r^n = \frac{1}{1-r}
+$$
+harmonic series, 调和级数是发散的,
+$$
+\sum_{n=1}^{\infin}\frac{1}{n}=\infin
+$$
+然而交替调和级数是收敛的,alternating harmonic series,
+$$
+\sum_{n=1}^{\infin}\frac{(-1)^{n-1}}{n} = \ln{2}
+$$
 
+例子:Bessel function,贝塞尔函数是差分方程的解, 
+$$
+x^2(\frac{d^2y}{dx^2})+x(\frac{dy}{dx})+(x^2-a^2)y=0
+$$
+贝塞尔函数的级数表示可以用
+$$
+J_0(x)=\sum_{n=0}^{\infin}[{\frac{(-1)^n}{(n!)^{2'}}}(\frac{x}{2})^2]
+$$
+我们可以写为
+$$
+J_0(x)=\frac{1}{2\pi}\int_{0}^{2\pi}\cos{(x\cos{(\phi)})}d\phi
+$$
+Solution,推导方式:
+$$
+\begin{aligned}
+J_0(x)=&\frac{1}{2\pi}\int_{0}^{2\pi}\cos{(x\cos{(\phi)})}d\phi\\
+=&\frac{1}{2\pi}\int_{0}^{2\pi}\sum_{n=0}^{\infin}\frac{(-1)^n}{(2n)!}(x\cos{\phi})^{2n}d\phi \\
+=&\sum_{n=0}^{\infin}\frac{1}{2\pi}\int_{0}^{2\pi}\frac{(-1)^n}{(2n)!}(x\cos{\phi})^{2n}d\phi\\
+=&\sum_{n=0}^{\infin}\frac{1}{2\pi}\frac{(-1)^{n}}{(2n)!}x^{2n}\int_{0}^{2\pi}(\cos{\phi})^{2n}d\phi\\
+=&\frac{1}{2\pi}\sum_{n=0}^{\infin}\frac{(-1)^{n}}{(2n)!}x^{2n}\int_{0}^{2\pi}(\cos{\phi})^{2n}d\phi\\
+\end{aligned}
+$$
+可以证明，you can verify that
+$$
+\int_{0}^{2\pi}(\cos{\phi})^{2n}d\phi = \frac{(2n)!}{2^{2n}(n!)^2}2\pi\\
+$$
+Hence
+$$
+\begin{aligned}
+J_0(x)=&\frac{1}{2\pi}\sum_{n=0}^{\infin}\frac{(-1)^{n}}{(2n)!}x^{2n}\int_{0}^{2\pi}(\cos{\phi})^{2n}d\phi\\
+=&\frac{1}{2\pi}\sum_{n=0}^{\infin}\frac{(-1)^{n}}{(2n)!}x^{2n}\frac{(2n)!}{2^{2n}(n!)^2}2\pi\\
+=&\sum_{n=0}^{\infin}\frac{(-1)^{n}}{(n!)^2}(\frac{x}{2})^{2n}\\
+=&J_0(x)\\
+\end{aligned}
+$$
 
+**Laurent Series**
+劳伦级数, 表示一个复变函数$f(z)$,与泰勒级数相比，劳伦级数包括的项具有负幂部分。
+$$
+f(z)=\sum_{n=-\infin}^{\infin}a_n(z-z_0)^n
+$$
+劳伦级数的系数,使用Cauchy's integral formula, 柯西的积分公式,
+$$
+a_n=\frac{1}{2\pi i}\oint\frac{f(z)}{(z-z_0)^{n+1}}dz, for\space n=0,1,2,\dotsi
+$$
+annulus, 环空，环带,
+Laurent series可以写为
+$$
+f(z)=a_0 + a_1(z-z_0) + a_2(z-z)^2+ \dotsi + \frac{a_{-1}}{z-z_0} + \frac{a_{-2}}{(z-z_0)^2}+\dotsi
+$$
+colloquially,口语地说，通俗地说，奇点说明这个点不可微分,
+analytic part of the series, 级数的解析部分，是展开部分,
 
+**奇点的种类**
+quintessential example, 典型的例子, 奇点会导致函数blow up, 但是函数的极限是存在的。典型的例子是$f(z)=(\sin{z})/z$, f(0)不存在，无定义。然而$\lim\limits_{z \to z_0}f(z)=1$, 极限是存在的。如果你能够理解这一点的话，你就可以理解removable singularity的概念。
 
+假定劳伦级数有有限个项
+$$
+\frac{a_{-1}}{z-z_0}+\frac{a_{-2}}{(z-z_0)^2}+\dotsi+\frac{a_{-n}}{(z-z_0)^n}
+$$
+$z=z_0$叫做极点，阶为n，n阶极点, 极点会造成函数无限大, 如果$a_{-1}$是唯一的不为零的系数，我们说$z=z_0$是一个简单极点，simple pole,
 
+essential singularity, 本质极点, 有限数个负幂项，在Laurent扩展里面, 
+
+branch point $z=z_0$, 是一个多值函数的点，当曲线卷过$z_0$时，函数值会变化,
+
+A singularity at infinity is a zero of $f(z)$ if we let $z=1/w$ and consider the Function $F(w)=f(1/z)$
+
+**Entire Functions**
+整函数, 在复平面上都是解析的, analytic的函数, 整函数可以泰勒展开，收敛半径是有限的。
+
+**Meromorphic Functions**
+亚纯函数在复平面上处处解析，除了有限数目的极点外。
 
 
 
