@@ -897,7 +897,199 @@ A singularity at infinity is a zero of $f(z)$ if we let $z=1/w$ and consider the
 
 **Meromorphic Functions**
 亚纯函数在复平面上处处解析，除了有限数目的极点外。
+Laurent expansion, 
+- essential part,
+- analytic part, 非极数项,
+- principal part, 极数项,
 
+# chap 6 Complex Integration
+初等微积分包括differentiation and integration. 
+
+Suppose a complex-valued funciton $w=f(z)$
+$$
+w(t) = u(t) + iv(t)
+$$
+we are considering an interval $a \leqslant t \leqslant b$
+定义积分为
+$$
+\int_a^bw(t)dt=\int_a^bu(t)dt + i\int_a^bv(t)dt
+$$
+Make the definition,
+$$
+\frac{dU}{dt}=u(t), \space \frac{dV}{dt}=v(t)
+$$
+Then it follows that
+$$
+\int_a^bw(t)dt=\int_a^bu(t)dt + i\int_a^bv(t)dt \\[0.5em]
+= U(b)-U(a) +i[V(b)-V(a)] \\
+$$
+
+**复积分的性质**
+将复函数分为实部、虚部后分别积分。
+$$
+\int_a^b(f\plusmn g)dt=\int_a^bfdt \plusmn \int_a^bgdt
+$$
+$f(t)=u+iv, g(t)=r+is$
+乘法
+$$
+\int_a^b(fg)dt=\int_a^b(u+iv)(r+is)dt=\int_a^b(ur-vs)dt+i\int_a^b(vr+us)dt
+$$
+
+**Contours in the complex plane**
+curve that does not cross itself is simple.复函数的积分定义在复平面上的一条曲线。一个复数$z$可以写成,x,y为实数,
+$$
+z(t)=x(t)+iy(t)
+$$
+定义一条曲线curve, 连续函数$\gamma(t)$, maps a closed interval $a \leqslant t \leqslant b$, 如果$\gamma(t_1) \not = \gamma(t_2)$, when $t_1 \not = t_2$,称为simple curve or Jordan arc. 
+
+open curve, simple closed curve or closed contour, 
+
+Contour integration, The points sweep out the circle in the counter-clockwise direction. In the positive sense, 移动with increasing angle. 
+
+**复线积分**
+连续可微函数，continuously differentiable function,
+让函数$f(t)$从$a \leqslant t \leqslant b$映射到实数,$f:[a,b] \to \R$
+
+* $df/dt$在开区间$a \lt t \lt b$存在
+* $df/dt$在闭区间$a \le t \le b$内连续
+
+$\gamma \in \Complex^1([a,b])$,在区间内连续可微, $\gamma(t)=f(t)+ig(t)$,则
+$$
+\frac{d\gamma}{dt}=\frac{df}{dt}+i\frac{dg}{dt}
+$$
+在上面这种情况下
+$$
+\int_a^{b}\gamma^{'}(t)dt = \gamma(b) - \gamma(a)
+$$
+如果有一个连续可微的函数$h$, 映射$D$到实数，那么，沿曲线的积分为
+$$
+\int_a^b(\frac{\partial h}{\partial x}\gamma(t)\frac{df}{dt} +\frac{\partial h}{\partial y}\gamma(t)\frac{dg}{dt})dt = h(\gamma(b))-h(\gamma(a))
+$$
+
+复线积分或contour integral, 等高线积分
+假定$\gamma(t)$是一个简单闭曲线，无自交叉。复变量函数$F(z)$的复线积分可以写为
+$$
+\oint F(z)dz = \int_a^b F(\gamma(t))\frac{d\gamma}{dt}dt
+$$
+又称为contour integral, 等高线积分，
+
+
+**cauchy-goursat theorem**
+柯西-古萨定理, $w=f(z)=u(x,y)+iv(x,y)$
+With $z=x+iy$, then $dz=dx+idy$
+so we can write the integral of a complex function along a curve $\gamma$ in the following way.
+$$
+\int_{\gamma}f(z)dz =\int_{\gamma}(u+iv)(dx+dy)=\int_{\gamma}udx-vdy + i\int_{\gamma}vdx+udy
+$$
+Suppose that $f(z)$ has an antiderivative, 不定积分?
+$$
+f(z)=\frac{dF}{dz}
+$$
+原函数，不定积分
+$$
+\int_{\gamma}f(z)dz=\int_{\gamma}\frac{dF}{dz}dz=F(z)|_a^{b}=F(b)-F(a)
+$$
+To prove this result, we use $F(z)= U+iV$, 我们假定$f$和$F$是解析的，analytic. 
+$$
+f(z)=\frac{dF}{dz}=\frac{\partial U}{\partial x}+i\frac{\partial V}{\partial x}=\frac{\partial V}{\partial y}-\frac{\partial U}{\partial y}
+$$
+and so
+$$
+\begin{aligned}
+    \int_{\gamma}f(z)&=\int_{\gamma}\frac{dF}{dz}dz \\[0.5em]
+&=\int_{\gamma}\frac{\partial U}{\partial x}dx + \frac{\partial U}{y}dy + i(\int_{\gamma}\frac{\partial V}{\partial x}dx +\frac{\partial V}{\partial y}dy)
+\end{aligned}
+$$
+But since $U=U(x,y)$, using the chain rule we know that
+$$
+dU = \frac{\partial U}{\partial x}dx+\frac{\partial U}{\partial y}dy \\[0.5em]
+dV = \frac{\partial V}{\partial x}dx + \frac{\partial V}{\partial y}dy \\
+$$
+Hence
+$$
+\begin{aligned}
+\inf_{\gamma}f(z)dz&=\int_{\gamma}\frac{dF}{dz}dz \\
+&=\int_{\gamma}dU + i\int_{\gamma}dV \\
+&=U|_{z=a}^{z=b} + iV|_{a}^{b} \\
+&=F(b)-F(a) \\
+\end{aligned}
+$$
+如果曲线是闭合的, then $a=b$ and we have the result:
+$$
+\int_{\gamma}z^n dz=0
+$$
+当$n \not = -1$时，上式成立。当$n=-1$时，会发现一个复积分的有趣的现象。我们选择的contour,等高线将影响积分结果。
+
+选择unit circle作为contour, letting $0 \leqslant t \leqslant 2\pi$, 则曲线为$\gamma{(t)}=e^{it}$, 对$f(z)=1/z$进行曲线积分
+$$
+\begin{aligned}
+    \int_{\gamma}\frac{dz}{z} &= \int_{0}^{2\pi}\frac{1}{e^{it}}\frac{d}{dt}(e^it)dt \\
+&= \int_{0}^{2\pi}e^{-it}(ie^{it})dt \\
+&= i\int_{0}^{2\pi}dt \\
+&= 2\pi i \\
+\end{aligned}
+$$
+现在从另一个角度看这个积分。$f(z)=1/z$的积分域是复平面去掉原点，我们记为$\Complex \backslash \{0\}$。$f(z)$的不定积分, antiderivative是$F(z)=\ln{z}=\ln{r}+i\theta$, 不定积分的定义域是$\Complex \backslash(-\infin,0]$
+
+我们选择两个点, $a=re^{-i\pi}$, $b=re^{i\pi}$，
+注意到
+$$
+\ln{b} = \ln{(re^{i\pi})}=\ln{r} + i\pi \\
+\ln{a} = \ln(re^{-i\pi})=\ln{r}-i\pi \\
+$$
+Using the fundamental theorem of calculus, the integral is
+$$
+\int_{\gamma}\frac{dz}{z}=\ln{z}|_a^b = \ln(b)-\ln{z}=\ln{r} + i\pi - (\ln{r}-i\pi) = i2\pi
+$$
+
+**Cauchy's Integral Theorem**
+柯西的积分定理,
+Let $U$ be a simply connected domain, and define a function $f:U \to \Complex$, if $w=f(z)$is analytic on a simple, closed curve $\gamma$, and in its interior, then
+$$
+\oint_{\gamma}f(z)dz = 0
+$$
+To prove the theorem, we write
+$$
+\oint_{\gamma}f(z)dz=\oint_{\gamma}(u+iv)(dx+idy) \\
+=\oint_{\gamma}udx - vdy +i\oint_{\gamma}vdx + udy \\
+$$
+We can rewrite this result in terms of partial derivatives and then use Cauchy-Riemann to prove the theorem(we can do this because the assumption of the theorem is that the function is analytic). 
+First we call upon Green's theorem which state that, 格林公式
+$$
+\int_{\gamma}Pdx+Qdy = \iint_{R}\left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right)dxdy \\
+$$
+where $R$ is a closed region in the plane. Now recall that the Cauchy-Riemann equations tell us
+$$
+\frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}
+$$
+Green's theorem together with this result gives
+$$
+\oint_{\gamma}udx -vdy=\iint-\frac{\partial u}{\partial y}-\frac{\partial v}{\partial x}dxdy \\
+= \iint\frac{\partial v}{\partial x}-\frac{\partial v}{\partial x}dxdy = 0
+$$
+Similarly, we have
+$$
+i\oint_{\gamma}vdx+udy=i\iint \frac{\partial u}{\partial x}-\frac{\partial v}{\partial y}dxdy
+$$
+So the second term vanishes as well. This proves the theorem.
+
+**Morera's Theorem**
+莫雷拉定理,
+Let f(z) be a contiuous complex-valued function on an open set D in the complex plane. Suppose that
+$$
+\oint_{\gamma}f(z)dz = 0
+$$
+for all closed curves $\gamma$, then it follows that $f(z)$ is analytic.
+
+**Cauchy's integray formula**
+柯西积分公式
+Let $f(z)$ be analytic on a simple colosed contour $\gamma$ and suppose that $f(z)$ is also analytic everywhere on it interior. If the point $z_0$ is enclosed by $\gamma$, then
+$$
+\oint_{\gamma}\frac{f(z)}{z-z_0}dz = 2\pi if(z_0)
+$$
+
+# chap 7 Residue Theory,
+上一章，我们介绍了复积分的概念。柯西积分公式，这一节我们使用residue theory, 残留理论推广这一公式，方便进行复积分，和实积分。
 
 
 
