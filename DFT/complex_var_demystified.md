@@ -1089,9 +1089,394 @@ $$
 $$
 
 # chap 7 Residue Theory,
-上一章，我们介绍了复积分的概念。柯西积分公式，这一节我们使用residue theory, 残留理论推广这一公式，方便进行复积分，和实积分。
+上一章，我们介绍了复积分的概念。柯西积分公式，这一节我们使用residue theory, 残留理论推广这一公式，方便进行复积分，和实积分。居然就是留数定理!?
+
+重新书写柯西积分公式:
+$$
+f(a)=\frac{1}{2\pi i}\oint_{\gamma}\frac{f(z)}{z-a}dz
+$$
+Now let's take the derivative of this expression, with respect to $a$, this gives
+$$
+\begin{aligned}
+f'(a)&=\frac{d}{da}\lbrack \frac{1}{2\pi i}\oint_{\gamma}\frac{f(z)}{z-a}dz \rbrack\\
+&=\frac{1}{2\pi i}\oint_{\gamma}\frac{d}{da}\lbrack \frac{f(z)}{z-a} \rbrack\\
+&=\frac{1}{2\pi i}\oint_{\gamma}\frac{f(z)}{(z-a)^2}dz \\
+\end{aligned}
+$$
+再次微分
+$$
+f''(a)=\frac{1}{\pi i}\oint_{\gamma}\frac{f(z)}{(z-a)^3}dz \\
+$$
+For an arbitrary $n$, we obtain a second Cauchy's integral formula for the $nth$ derivative of $f(a)$
+$$
+f^{(n)}(a)=\frac{n!}{2\pi i}\oint_{\gamma}\frac{f(z)}{(z-a)^{n+1}}dz, \space for n = 1,2,3,\dotsi \\
+$$
+Now we return to Caucy's inequality. 可以帮我们来方便计算一个解析函数的求导，在一个simply connected region里面。
+Consider a circle of radius $r$, which has a point $z=a$ at its center, and suppose $f(z)$ is analytic on the circle and inside the circle. Let $M$ be a positive constant such that $|f(z)| \leqslant M$ in the region $|z-a|\lt r$, then
+$$
+|f^{(n)}(a)| \leqslant \frac{Mn!}{r^n} \\
+$$
+                                                                                                                                                                                                                                                                                                                         
+**Liouville's theorem**
+If $f(z)$ is analytic and bounded in the entire complex plane, that is, $|f(z)| < M$ for some constant $M$, then $f(z)$ is a constant.
+
+Consider a polynomial with degree $n \geqslant 1$, and coefficient $a_n \not = 0$
+$$
+P(z)=a_0+a_1z+a_2z^2+\dotsi+a_nz^n
+$$
+基本的定理每一个多项式$P(z)$都至少有一个根。The proof follows from Liouville's theorem and the use of a proof by contradiction. Suppose that instead $P(z)\not = 0$ for all $z$. Then
+
+$$
+f(z)=\frac{1}{P(z)}
+$$
+is analytic throughout the complex plane, and is bounded outside some circle $|z|=r$. 根据刘维尔定理, $1/P(z)$必须是一个常量.然而$P(z)$的级数展开不是一个常量。所以$P(z)=0$必须被满足。
+
+**maximum modulus theorem**
+Let $f(z)$ be a complexed-valued function which is analytic inside and on a simple closed curve $\gamma$. If $f(z)$ is not a constant, then the maximum value of $|f(z)|$ is found on the curve $\gamma$.
+
+**minimum modulus theorem**
+Assume that $f(z)$ is a complex-valued function which is analytic inside and on a simple closed curve $\gamma$. If $f(z) \not = 0$ inside $\gamma$, then $|f(z)|$ assummes its minimum value on the curve $\gamma$. 
+
+**deformation of path theorem**
+Consider a domain $D$ in the complex plane, and two curves in $D$ we call $\gamma_1$ and $\gamma_2$.We suppose that $\gamma_1$ is larger than or lies outside of $\gamma_2$, and that $\gamma_1$ can be deformed into $\gamma_2$ without leaving the domain $D$ [that is, we can shrink the first curve down to the second one without crossing any holes or discontinuties in the domain]. If $f(z)$ is analytic in $D$ then
+$$
+\oint_{\gamma_1}f(z)dz = \oint_{\gamma_2}f(z)dz \\
+$$
+
+**Gauss' mean value theorem**
+Consider a circle $\gamma$ of radius $r$ centered at the point $a$. Let $f(z)$ be a function, which is analytic on and inside $\gamma$. The mean value of $f(z)$ on $\gamma$ is given by $f(a)$
+$$
+f(a)=\frac{1}{2\pi}\int_{0}^{2\pi}f(a+re^{i\theta})d\theta \\
+$$
+**argument theorem**
+Let $f(z)$ be a function, which is analytic on and inside a simple , closed curve $\gamma$. Now assume that $f(z)$ has a finite number of poles inside $\gamma$. If $M$ is the number of zeros of $f(z)$ inside $\gamma$ and $N$ is the number of poles inside $\gamma$, then 
+$$
+\frac{1}{2\pi i}\oint_{\gamma}\frac{f'(z)}{f(z)}dz = M- N \\
+$$
+**Rouche's theorem**
+Let $f(z)$ and $g(z)$ be two functions, which are analytic inside and on a simple closed curve $\gamma$. If $|g(z)| \leqslant |f(z)|$ on $\gamma$, then $f(z) + g(z)$ 和$f(z)$ have the same number of zeros inisde $\gamma$.
+
+**Poisson's integral formula for a circle**
+This expresses the value of a harmonic function inside of a circle in terms of its values on the boundary. Let $f(z)$ be analytic inside and on the circle $\gamma$, centered at the origin with radius $R$. Suppose that $z=re^{i\theta}$ is any point inside $\gamma$. Then
+$$
+f(z)=\frac{1}{2\pi}\int_0^{2\pi}\frac{(R^2-r^2)f(Re^{i\phi})}{R^2 - 2Rr\cos(\theta - \phi) + r^2}d\phi \\
+$$
+
+例子: Illustrates the solution of Laplace's equation on a disk.
+$$
+u(r,\theta)=a_0 + \sum_{n=1}^{\infin}a_nr^n\cos{n\theta}+b_nr^n\sin{n\theta} 
+$$
+is the solution of Laplace's equation on the disc $0 \leqslant r \leqslant 1$ with Dirichlet boundary conditions:
+$$
+\frac{1}{r}\frac{\partial}{\partial r}(r\frac{\partial u}{\partial r}) + \frac{1}{r^2}\frac{\partial^2u}{\partial r^2} = 0, \space 0<r<1,0\leqslant\theta\leqslant2\pi
+$$
+$u(1,\theta)=f(\theta), u(r,\theta) bounded\space as\space r\to 0$
+Show the coefficients in the series expansion are given by
+$$
+a_0=\frac{1}{2\pi}\int_0^{2\pi}f(\theta)d\theta \\[0.5em]
+a_n=\frac{1}{\pi}\int_0^{2\pi}f(\theta)\cos{n\theta}d\theta \\
+b_n=\frac{1}{\pi}\int_0^{2\pi}f(\theta)\sin{n\theta}d\theta 
+$$
+实际上上式，展开的形式，像什么呢? 非常像傅里叶变换, 拉普拉斯方程的解是$u()$的形式, on the disc < 1. 满足边界情况。
+使用这个结果来deduce Poisson's integral formula for a circle of radius one:
+$$
+u(r,\theta)=\frac{1}{2\pi}\int_0^{2\pi}\frac{1-r^2}{1-2r\cos{(\theta - \phi)} + r^2}f(\phi)d\phi 
+$$
+Solution, 解:
+We try separation of variables. Let $u(r,\theta)=R(r)\Theta(\theta)$. Then it follows that:
+$$
+\frac{\partial u}{\partial r}=\frac{\partial R}{\partial r}\Theta(\theta) \\[0.5em]
+\frac{\partial^2 u}{\partial r^2}=\frac{\partial^2 R}{\partial r^2}\Theta(\theta ) \\[0.5em]
+\frac{\partial^2 u}{\partial \theta^2}=R(r)\frac{\partial^2 \Theta}{\partial \theta^2}
+$$
+The statement of the problem tells us that:
+$$
+\frac{\partial^2 u}{\partial r^2}+\frac{1}{r}\frac{\partial u}{\partial r} + \frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2} = 0
+$$
+Hence
+$$
+\frac{\partial^2R}{\partial r^2}\Theta(\theta) + \frac{1}{r}\frac{\partial R}{\partial r}\Theta(\theta) + \frac{1}{r^2}R(r)\frac{\partial^2 \Theta}{\partial \theta^2} =0
+$$
+We divide every term by $u(r,\theta)=R(r)\Theta(\theta)$
+$$
+\frac{r^2}{R}\frac{\partial^2 R}{\partial r^2} + \frac{r}{R}\frac{\partial R}{\partial r}=-\frac{1}{\Theta}\frac{\partial^2 \Theta}{\partial \theta^2}
+$$
+The left-hand side and the right-hand side are functions of $r$ only or $\theta$ only. Therefore they can be equal only if they are both equal to a constant. We call this constant $n^2$. Then we have the equations :
+$$
+-\frac{1}{\Theta}\frac{\partial^2 \Theta}{\partial \theta^2} = n^2 \\[0.5em]
+\Rarr \frac{d^2\Theta}{d\theta^2} + n^2\Theta = 0
+$$
+Note that partial derivatives can be replace by ordinary derivatives at this point, since each equation involves one variable only. This familiar differential equation has solution given by
+$$
+\Theta{(\theta)}=a_n\cos{n\theta} + b_n\sin{n\theta}
+$$
+Now turning to the equation in $r$, we have
+$$
+\frac{r^2}{R}\frac{\partial^2 R}{\partial r^2} + \frac{r}{R}\frac{\partial R}{\partial r}=n^2 \\[0.5em]
+\Rarr r^2\frac{d^2R}{dr^2}+r\frac{dR}{dr}-n^2R=0
+$$
+You should also be familiar with this equation from the study of ordinary differential equations. It has the solution
+$$
+R(r)=c_nr^n +c_{-n}r^{-n}
+$$
+The total solution, by assumption is the product of both solutions.
+$$
+u(r,\theta)= (c_nr^n +c_{-n}r^{-n})(a_n\cos{n\theta} + b_n\sin{n\theta})
+$$
+The condition that $u(r,\theta)$ is bounded as $r \to 0$ imposes a requirement that the constant $c_{-n} = 0$ since
+$$
+\frac{c_{-n}}{r^n} \rArr \infin \space as \space r\rArr 0
+$$
+所以为了保持u是有限的，只剩下了$c_nr^n$项,化简为
+$$
+u(r,\theta)=r^n(a_n\cos{n\theta} + b_n\sin{n\theta})
+$$
+The most general solution is a superposition of such solutions which ranges over all possible value of $n$,
+$$
+u(r,\theta)=a_0+\sum_{n=1}^{\infin}r^n(a_n\cos{n\theta} + b_n\sin{n\theta})
+$$
+To proceed, the following orthogonality integrals are useful, 正交积分存在
+$$
+\int_0^{2\pi}\sin{m\theta}\sin{n\theta}d\theta =\begin{cases}
+    \pi \delta_{mn}, for\space n\not = 0 \\
+    0, for \space n=0 \\
+\end{cases} \\
+\int_0^{2\pi}\cos{m\theta}\cos{n\theta}d\theta =\begin{cases}
+    \pi \delta_{mn}, for\space n\not = 0 \\[0.5em]
+    2\pi\delta_{mn}, for \space n=0 \\[0.5em]
+\end{cases}\\
+\int_0^{2\pi}\sin{m\theta}\cos{n\theta}d\theta = 0 \\
+$$
+Here,如果$m=n$,$\delta{mn}=1$, which is the Kronecker delta function. Now we apply the boundary condition $u(1,\theta)=f(\theta)$ for $0\leqslant \theta \leqslant 2\pi$:
+$$
+f(\theta) = a_0+\sum_{n=1}^{\infin}r^n(a_n\cos{n\theta} + b_n\sin{n\theta})
+$$
+Multiply through this expression by $\sin{m\theta}$ and integrate
+$$
+\int_0^{2\pi}f(\theta)\sin{m\theta}d\theta=\pi b_m
+$$
+We conclude that
+$$
+b_n=\frac{1}{\pi}\int_0^{2\pi}f(\theta)\sin{n\theta}d\theta
+$$
+Multiply by $\cos{m\theta}$ and integrate,
+$$
+\int_0^{2\pi}f(\theta)\cos{m\theta}d\theta = \pi a_m
+$$
+Hence,
+$$
+a_m=\frac{1}{\pi}\int_0^{2\pi}f(\theta)\sin{m\theta}d\theta
+$$
+求$a_0$
+$$
+a_0=\frac{1}{2\pi}\int_0^{2\pi}f(\theta)d\theta
+$$
+可是证明里面的这个怎么来的呢?
+$$
+1-2\sum_{n=1}^{\infin}r^n\cos{[n(\theta-\phi)]}=\frac{1-r^2}{1-2r\cos{(\theta - \phi)}+r^2}
+$$
+泊松公式告诉我们，一个调和函数在曲线里面的值等于圆曲线上的边界的积分的平均值。
+
+**The Cauchy's Integral Formula as a sampling function**
+Dirac delta function 拥有2个性质, 第一个:
+$$
+\int_{-\infin}^{\infin}\delta(x)dx = 1
+$$
+第二个，作为一个抽样函数, sampling,取样函数
+$$
+\int_{-\infin}^{\infin}f(x)\delta(x-a)dx=f(a)
+$$
+在复分析中，$1/z$拥有同样的角色, it has a singularity at $z=0$, 
+$$
+\frac{1}{2\pi i}\oint_{\gamma}\frac{1}{z}dz=\begin{cases}
+    0, not \space in \space interior \space of \gamma \\
+    1, inside \space \gamma \\
+\end{cases}
+$$
+对于解析函数, analytic functions, $f(z)$
+$$
+f(a)=\frac{1}{2\pi i}\oint_{\gamma}\frac{f(z)}{z-a}dz
+$$
+
+**解析函数的一些特性**
+在描述留数定理前，还需要陈述一些基础的定理
+
+解析函数都有一个local power series expansion,展开
+在disc内, $|z-a|<r$, $f(z)$ 可以有一个级数展开
+$$
+f(z)=\sum_{n=0}^{\infin}a_n(z-a)^n
+$$
+根据一个原点、点，展开。系数为，使用柯西积分公式,
+$$
+a_n=\frac{f^{(n)(a)}}{n!}
+$$
+幂级数展开的积分，
+$$
+\int_{\gamma}(z-a)^m dz=\begin{cases}
+    0, if \space m \not = -1 \\
+    \ln{(z-a)}, if \space m=-1 \\
+\end{cases}
+$$
+$n$永远不会为$-1$, 所以为0奥
+$$
+\int_{\gamma}f(z)dz = \sum_{n=0}^{\infin}a_n\int_{\gamma}(z-a)^n dz
+$$
+
+$f(z)$ 作为一个analytic in a punctured disc has a Laurent expansion,
+考虑到一个穿透的圆盘, radius $r$ centered at the point $a$, we denote this by writing $0 \lt |z-a| \lt r$. If $f(z)$ is analytic in this region, it is analytic inside the disc but not at the point $a$. In this case, the function has a Laurent expansion:
+$$
+f(z) = \sum_{n=-\infin}^{\infin}a_n(z-a)^n
+$$
+A removable singularity is a point at $a$ at which the function appears to be undefined, but it can be shown by writing down the Laurent expansion that in fact the function is anlytic at $a$. 此时:
+$$
+f(z)= \sum_{n=k}^{\infin}a_n(z-a)^n
+$$
+where $k \geqslant 0$, it turns out the point $z=a$ is a zero of order $k$.
+On the other hand, suppose that the series expansion retains terms with $n < 0$
+$$
+f(z)=\sum_{n=-k}^{\infin}a_n(z-a)^n
+$$
+point $z=a$ is a pole of order $k$. 
+A Laurent series expansion can be split into two parts:
+$$
+f(z) = \sum_{n=-k}^{-1}a_n(z-a)^n + \sum_{n=0}^{\infin}a_n(z-a)^n = F + G
+$$
+$F$是principal part, 包含了所有的singularities, real ones, pole of the function,
+$G$是plain old Taylor expansion,
+
+Describe the nature of the singularity at $z=0$ for $f(z)=e^{1/z}$
+Solution:
+$$
+f(z)=e^{\frac{1}{z}} \\[0.5em]
+= 1 +\frac{1}{1!}\frac{1}{z} + \frac{1}{2!}(\frac{1}{z})^2 +\frac{1}{3!}(\frac{1}{3})^3 +\frac{1}{4!}(\frac{1}{z})^4 +\dotsi
+$$
+
+**Residue Theorem**
+We consider a function $f(z)$ in a region enclosed by a curve $\gamma$ that includes isolated singularites as the points $z_1, z_2, z_3,\dotsi,z_k$. 函数在曲线上处处可解析，在内部除了那些奇点外也处处解析。
+
+We can shrink the curve down into isolated curves enclosing each singularity. 
+
+积分可以被分割为对每个奇点的积分之和
+$$
+\int_{\gamma}f(z)dz = \sum_{j=1}^{k}\int_{\gamma_j}f(z)dz
+$$
+这个表达式可以用Laurent expansion展开。
+$$
+\int_{\gamma_j}f(z)dz = \sum_{n=-\infin}^{\infin}a_n^j\int_{\gamma_j}(z-z_j)^ndz = a_{-1}^j2\pi i
+$$
+除了$n=-1$外，其它的积分都为0,
+我们把$a_{-1}^j$称为残留，留数。将每个奇异点的积分加起来，我就就得到了留数定理。积分与留数之和成正比。
+$$
+\oint_{\gamma}f(z) dz = 2\pi i\sum_{j=1}^k residues
+$$
+留数的计算可以通过求$z$趋近于每一个奇点时, $f(z)$的极限来求得。例如当奇点在$z=a$时
+$$
+residue = \lim\limits_{z\to a}\frac{1}{(k-1)!}\frac{d^{k-1}}{dz^{k-1}}[(z-a)^kf(z)]
+$$
+$k$ is the order of the singularity
+
+例子:
+计算积分
+$$
+\oint_{\gamma}\frac{5z-2}{z(z-2)}dz
+$$
+where $\gamma$是一个圆，半径$r=3$,圆心在原点0上
+Solution:
+$z=0,2$是奇点，两个奇点都被曲线包裹, since $|z|<3$. 下面来计算每个奇点的函数极限值。
+The residue corresponding to $z=0$is, $k=1$
+$$
+\lim\limits_{z\to 0}z[\frac{5z-2}{z(z-2)}]\\[0.5em]
+=\lim\limits_{z\to 0}\frac{5z-2}{z-2} \\[0.5em]
+=\frac{-2}{-2} = 1
+$$
+The residue corresponding to $z=2$, $k=1$ is
+$$
+\lim\limits_{z\to 2}(z-2)^1\frac{5z-2}{z(z-2)}\\[0.5em]
+=\lim\limits_{z\to 2}\frac{5z-2}{z} \\[0.5em]
+=\frac{8}{2}\\[0.5em]
+=4
+$$
+因此原积分为
+$$
+\oint_{\gamma}\frac{5z-2}{z(z-2)}dz=2\pi i\sum residues=2\pi i(1+4)=10\pi i
+$$
+
+**求实有限积分**
+留数定理的最强大的应用是计算实函数的有限积分,
+例子,
+$$
+\int_0^{2\pi}f(\cos{\theta}, \sin{\theta})d\theta 
+$$
+在单位圆上, 表示复变量$z$, let $z=e^{i\theta}$. 注意到
+$$
+dz=ie^{i\theta}d\theta,\rArr d\theta=\frac{1}{iz}dz=-\frac{i}{z}dz
+$$
+As $\theta$ increases from 0 to $2\pi$, one sees that the complex variable $z$ moves around the unit circle in a counter clockwise direction. Using Euler's formula, we can also rewrite $\cos{\theta}$ and $\sin{\theta}$ in terms of complex variables. 
+$$
+\cos{\theta} = \frac{e^{i\theta} + e^{-i\theta}}{2} = e^{-i\theta}(\frac{e^{i2\theta} + 1}{2})=\frac{e^{i2\theta}+1}{2e^{i\theta}}=\frac{z^2+1}{2z}
+$$
+similarly, we find that
+$$
+\sin{\theta} = \frac{z^2 -1}{2iz}
+$$
+So we can see that $\int_0^{2\pi}f(\cos{\theta},\sin{\theta})d\theta$, can be rewritten as a contour integral in the complex plane. We only need to include residues that are inside the unit circle.
+
+将三角函数转为f(z)的形式,
+
+另一种定积分形式为
+$$
+\int_{-\infin}^{\infin}f(x)\begin{Bmatrix}
+    \cos{mx} \\
+    \sin{mx}
+\end{Bmatrix}dx
+$$
+这种类型的积分可以转换为环路积分的形式
+$$
+\oint f(z)e^{imz} dz
+$$
+为了获得想要的结果，我们选取上述积分的实部或者虚部。一个有用的工具是Jordan's lemma.乔丹的引理,
+假定我们选择$\gamma$为一个以origin为圆心的半圆, semicircle, 位于平面坐标的上半平面。
+Jordan's lemma states that
+$$
+\lim\limits_{R\to \infin}\int_{C_1}f(z)e^{mz}dz = 0
+$$
+乔丹引理不是在所有的情况下都满足。If $m>0$, 则必须$|f(z)\to 0|$ as $R \to \infin$, We can also apply it in the following case:
+$$
+\lim\limits_{R\to \infin}\int_{C_1}f(z)dz = 0
+$$
+只要$|f(z)|\to 0$在$R \to \infin$时下降地比$1/z$更快。
+
+例子：
+计算
+$$
+\int_{-\infin}^{\infin}[\frac{\cos{kx}}{x^2}]dx
+$$
+Solution:
+已知
+$$
+I_z =P\int_{-\infin}^{\infin}\frac{e^{ikz}}{z^2}dz
+$$
+求
+$$
+\int_{-\infin}^{\infin}\frac{\cos{kx}}{x^2}dx = Re(I_z)
+$$
+这里的$C_1$和$C_2$在题末的记号好像是反了，这里非常让人失望！
+
+**Integral of a Rational Function**
+有理函数的积分$\int_{-\infin}^{\infin}f(x)dx$可以通过计算$\oint f(z)dz$，使用半圆形的曲线, -R, +R,而且$R \to \infin$
+
+例子：考虑Poisson kernel
+$$
+p_y(x)=\frac{1}{\pi}\frac{y}{x^2+y^2}
+$$
+$y$为一个常量, 使用留数定理来计算傅里叶变换, given by $[1/2\pi]e^{-|k|y}$
+Solution:
+解答:
 
 
+
+
+                                             
 
 
 
