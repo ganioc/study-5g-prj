@@ -471,8 +471,57 @@ Riemann在研究数论的时候找到的zeta函数
 $$
 \zeta(z)=\frac{1}{1^z}+\frac{1}{2^z}+\frac{1}{3^z}+\dotsi=\sum_{k=1}^{\infin}\frac{1}{k^z}\\
 $$
+Notice we can write
+$$
+\zeta(z)=\sum_{k=1}^{\infin}\frac{1}{k^z}=\sum_{k=1}^{\infin}\frac{1}{e^{ln(k^z)}}=\sum_{k=1}^{\infin}e^{-z\ln{k}}
+$$
+Be defined in terms of gamma function
+$$
+\zeta(z)=\frac{1}{\Gamma(z)}\int_0^{\infin}\frac{t^{z-1}}{e^t + 1}dt\\
+$$
+Another way
+$$
+\zeta(1-z)=2^{1-z}\pi^{-z}\Gamma{(z)}\cos{(\frac{\pi z}{2})}\zeta(z)\\
+$$
+所有的零点都在$Re(z)=1/2$上, 
+$$
+\frac{1}{\zeta(z)}=(1-\frac{1}{2^z})(1-\frac{1}{3^z})(1-\frac{1}{5^z})\dotsi = \prod_{p}(1-\frac{1}{p^z})
+$$
+Interesting ,mysterous feature, the product is taken over all positive primes $p$.
 
+# chap 12 Boundary Value Problems
+复分析可以用来解偏微分方程, Dirichlet problems, Neumann problem, 
 
+Harmonic functions, 满足下列形式的，in a region $R$ of the $x-y$ plane,
+$$
+\nabla^2\phi=\frac{\partial^2 \phi}{\partial x^2}+\frac{\partial^2\phi}{\partial y^2}=0\\
+$$
+如果一个复函数在区域$R$内是analytic的，那么$u(x,y),v(x,y)$都是harmonic functions. 而且它们为共轭。
+$$
+\frac{\partial^2 u}{\partial r^2}+\frac{1}{r}\frac{\partial u}{\partial r}+\frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2}=0
+$$
+
+使用保形映射来接边界值问题,
+First, we state Poisson's formulas, which give the solutions to the Dirichlet problem on the unit disk and for the upper half plane.
+
+1. Let $C$ be the unit circle and $R$ be its interior. 假定$f(r,\theta)$ is harmonic in $R$ and that it assumes the value $g(\theta)$ on the curve $C$. That is , $f(1,\theta)=g(\theta)$. Then the solution to Laplace's equation on the unit disk is given by Poisson's formula for a circle which states that
+$$
+f(r,\theta)=\frac{1}{2\pi}\int_0^{2\pi}\frac{(1-r^2)g(\phi)}{1-2r\cos{(\theta-\phi)}+r^2}d\phi
+$$
+Next we consider a function $f(x,y)$, which is harmonic in the upper half plane $y>0$ and assumes the value $f(x,y)=g(x)$ on the boundary, which in this case is the $x$ axis, that is $-\infin < x < \infin$. the solution to Laplace's equation for the upper half plane is given by
+$$
+f(x,y)=\frac{1}{\pi}\int_{-\infin}^{\infin}\frac{yg(s)}{y^2+(x-s)^2}ds\\
+$$
+We call it Poisson's formula for the half plane.
+
+The idea is to map the region $R$ to the unit disk or to the half plane. The mapping function that we use must be analytic. There are three stesp involved in obtaining a solution:
+* Use a conformal transformation to map the boundary value problem for a region $R$ to a boundar value problem on the unit disk or half plane,
+* Solve the problem using above eq.
+* Find the inverse of the solution to write down the solution in the region $R$
+
+Remember that a simply connected region is one that includes no sigularities. While the mapping of the region $R$ to region $R'$ in the $w$ plane must be conformal, the mapping of the boundary does not have to be conformal.
+
+Three theorems are useful for solving these types of problems. 
 
 
 
