@@ -1472,11 +1472,54 @@ $$
 $y$为一个常量, 使用留数定理来计算傅里叶变换, given by $[1/2\pi]e^{-|k|y}$
 Solution:
 解答:
+一个函数$f(x)$的傅里叶变换可以表示为以下积分
+$$
+F(k)=\frac{1}{2\pi}\int_{-\infin}^{\infin}f(x)e^{-ikx}dx\\
+$$
+理解为单位圆上，从负无穷到正无穷对f(x)进行积分运算, step，步进为k,频率
+So ,we are being asked to evaluate the integral
+$$
+I=\frac{1}{2\pi}\int_{-\infin}^{\infin}\frac{1}{\pi}\frac{y}{x^2+y^2}e^{-ikx}dx \\
+$$
+We do this by considering the contour integral
+$$
+\oint\frac{1}{2\pi^2}\frac{y}{z^2+y^2}e^{-ikz}dz
+$$
+将实域的积分转换为复数域的圆积分
+First , note that
+$$
+\frac{1}{2\pi^2}\frac{y}{z^2+y^2}=\frac{1}{2\pi^2}\frac{y}{(z+iy)(z-iy)}
+$$
+Therefore, there are two simple poles located at $z=\plusmn iy$. There lie directly on the y ais, one in the uppler half plane and one in the lower half plane. We need to compute using both cases. 
 
+First we consider the pole in the upper half plane. The residue corresponding to $z=+iy$ is:
+$$
+a_{-1}=(z-iy)\frac{ye^{-ikz}}{2\pi^2(z+iy)(z-iy)}|_{z=iy} \\[0.5em]
+=\frac{ye^{ky}}{2\pi^2(2iy)}=\frac{1}{4\pi^2i}e^{ky}\\
+$$
+所以
+$$
+I_1=2\pi i(\frac{1}{4\pi^2i}e^{ky})=\frac{e^{ky}}{2\pi}
+$$
+现在考虑另外一个奇点,$z=-iy$, bewo $x$ axis,我们用下半复平面的半圆来包围它。留数为
+$$
+a_2=(z+iy)\frac{ye^{-ikz}}{2\pi^2(z+iy)(z-iy)}|_{z=-iy} \\[0.5em]
+=-\frac{1}{4\pi^2i}e^{-ky}
+$$
+Using the result, we obtain
+$$
+I_2=2\pi i(-\frac{1}{4\pi^2i}e^{-ky})=-\frac{e^{-ky}}{2\pi}\\
+$$
+为什么这里面，负号消失了呢！？
+Combining both results gives the correct answer, which is
+$$
+I=I_1 + I_2 = \frac{e^{-|k|y}}{2\pi}\\
+$$
+结果是正确的吗?!
 
+乔丹引理，不在x轴上的曲线积分为零。
 
-
-                                             
+三角函数的积分，等于对应的复指数积分的结果的实部。
 
 
 
