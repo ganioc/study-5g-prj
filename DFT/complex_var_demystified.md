@@ -1,6 +1,14 @@
 # Complex Variables DeMystified
 >A self-teaching guide
 
+参考书籍:
+<Complex Variables: Introduction and Applications > 2nd ed, Cambridge
+<Complex variables and Applications> 7th ed. McGraw-Hill
+<Function Theory of One Complex Variable>
+<Classical Complex Analysis>
+<Complex Variables,> McGraw-Hill 
+<Schaum's Outlines: Complex Variables with an introduction to Conformal Mapping and Its Applications>
+
 书籍，demystified series
 
 Complex variable, more advanced version , Complex analysis, one of the most fascinating areas in pure and applied mathematics.
