@@ -542,6 +542,20 @@ A 1024-point sampled time-domain signal, $N^2$计算，为了快速计算，使�
 
 算法利用了频域的对称性,冲用了一些seed terms, 提供positive frequency spectrum with fewer calculations. FFT requires only $N\ln{(N)}$步骤的算法，只要N是2的次方数。计算量下降了147倍。
 
+### 6.7.2 INL/DNL for AWGs and Digitizers
+如果设备包含12-bits, 4095, or $2^{n-1}$, conversion codes need to be tested. 
+
+For the case of a digitizer , a ramp is programmed into the ATE's AWG. The range of voltage is called the full scale range (FSR),
+
+output pin $-FSR/2$ to $FSR/2$. The ATE then digitizes this ramp and analyzes the results. Called a static measurement because it does not matter how quickly the ramp rises, it just matters that the ATE and DUT are synchronized.
+
+DNL(Differential nonlinearity)
+这是第一个static measuremnt, After the conversion, detailed calculations are made that compute the difference between the actual step size and the ideal step size. Once this array is complete, the worst-case or largest DNL is recorded.
+
+INL(Integral nonlinearity)
+Can be calculated from the same resultant array as the DNL, The starting and ending points are recorded, and an ideal straight line is made through these points. For each sample, the deviation from this straight line is recorded . the worst-case deviation isrecorded. 
+
+## 6.8 Real Signals and Their Representations.
 
 
 
