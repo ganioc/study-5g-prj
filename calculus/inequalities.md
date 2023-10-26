@@ -25,6 +25,10 @@ Little Mathematical library
 
 
 # <Elementary Inequalities>
+推荐书籍:
+- John William Archbold，Algebra, 1970,
+- Advanced Algebra, Robson , 1948 
+
 ## 0.1 Inequalities involving Mean Value
 和平均值有关的不等式
 ### 0.1.1 For every set of positive numbers $A=\{a_1,a_2,\dotsi,a_n \}$
@@ -184,7 +188,7 @@ $max()$ 最大值的证法类似。
 
 ### 0.1.2 Prove the inequality
 $$
-\min(\frac{a_1}{b_1},\frac{a_2}{b_2}, \dotsi,\frac{a_n}{b_n})\leqslant \frac{a_1+a_2 + \dotsi + a_n}{b_1+b_2+\leqslant + b_n}\\[0.5em]
+\min(\frac{a_1}{b_1},\frac{a_2}{b_2}, \dotsi,\frac{a_n}{b_n})\leqslant \frac{a_1+a_2 + \dotsi + a_n}{b_1+b_2+\dotsi + b_n}\\[0.5em]
 \leqslant \max(\frac{a_1}{b_1},\frac{a_2}{b_2}, \dotsi,\frac{a_n}{b_n})
 $$
 where $b_1,b_2,\dotsi,b_n$ are positive numbers.
@@ -213,8 +217,137 @@ $$
 (1+h)^n \geqslant 1+nh
 $$
 Proof:
+Apply the method of mathematical induction. If $n=1$ then the relation holds as an equality. Suppose that the relation holds for $n=k \space (k\geqslant 1)$, i.e. that
+$$
+(1+h)^k \geqslant 1+kh\\
+$$
+Multiplying this inequality by $1+h\space(>0)$, we obtain
+$$
+(1+h)^{k+1} \geqslant (1+kh)(1+h)\\
+(1+h)^{k+1} \geqslant 1+(k+1)h+kh^2 $$
+as $kh^2>0$, whence $(1+h)^{k+1} \geqslant 1+(k+1)h$
+The proof is essentially complete.
 
+Next the generalized Bernoulli inequalities, required in differential calculus, will be established:
+$(1+x)^a>1+ax$, $(-1<x\not = 0,a>1$ or $a<0)$,
+$$
+(1+x)^{a} < 1+ax, \space (-1<x\not = 0, 0<a<1>)\tag{5}
+$$
+我开始用自己的方式，缓慢地阅读这本讲基本不等式的书.
 
+In fact using Taylor's formula, we obtain
+$$
+(1+x)^a-1-ax=\frac{a(a-1)x^2}{2}(1+\theta x)^{a-2}\space (0<\theta<1) \tag{6}
+$$
+首先，回忆一下泰勒展开,
+$f(x)$ 在某邻域具有任意阶到时，且余项$R_n(x)=0, n\to \infin$
+$$
+f(x)=f(x_0) + f'(x_0)(x-x_0)+\frac{1}{2!}f''(x_0)(x-x_0)^2 + \dotsi \\
++\frac{1}{n!}f^{(n)}(x_0)(x-x_0)^n
+$$
+所以展开$(1+x)^a$
+如果对$0$ 值展开的话，就是麦克劳林级数展开,
+$$
+(1+x)^a = 1 + ax +\frac{a(a-1)}{2!}x^2 + \dotsi
+$$
+$f^{(2)}(x')$, $x'=\theta x$
+In fact using Taylor's formula , we obtain
+$$
+(1+x)^a = 1 + ax +\frac{a(a-1)(1+\theta x)^{a-2}}{2!}x^2 
+$$
+其中$0<\theta<1$. Since by assumption, $1+\theta x>0$, this gives
+$$
+sgn\{ (1+x)^a -a -ax \} = sgn\{ a(a-1) \}, \space x\not =0\\
+$$
+通过这个式子来完成对上式$(5)$的证明。正确.
+
+## 0.3 Chebychev's Inequality
+If
+$$
+a_1\leqslant a_2 \leqslant \dotsi \leqslant a_n \space and \space b_1\leqslant b_2\leqslant \dotsi \leqslant b_n \tag{1}
+$$
+then Chebychev's inequality states:
+$$
+\big( \frac{1}{n}\sum_{v=1}^{n}a_v \big)\big( \frac{1}{n}\sum_{v=1}^{n}b_v \big) \leqslant \frac{1}{n}\sum_{v=1}^n a_vb_v \tag{2}
+$$
+算术平均值之积小于点乘的算术平均值
+也就是要证明:
+$$
+\tag{3} n\sum_{v=1}^na_vb_v \geqslant\sum_{v=1}^na_v \sum_{v=1}^nb_v 
+$$
+Proof：
+1. Let $\sum a\equiv \sum_{k=1}^{n}a_k, \sum b\equiv \sum_{k=1}^{n}b_k,\sum c\equiv \sum_{k=1}^{n}c_k$
+
+then, 
+$$
+\sum_{u}\sum_{v}(a_ub_u-a_ub_v)\equiv \sum_{u}(na_ub_u -a_u\sum b)\equiv n\sum ab -\sum a \sum b\\[0.5em]
+\sum_{u}\sum_{v}(a_vb_v - a_vb_u)\equiv \sum_{v}(na_vb_v-a_v\sum b)\equiv n\sum ab - \sum a\sum b \\
+$$
+Hence,
+$$
+\begin{aligned}
+    n\sum ab - \sum a\sum b &\equiv \frac{1}{2}\sum_{u}\sum_{v}(a_ub_u - a_ub_v + a_vb_v-a_vb_u)\\
+    &\equiv \frac{1}{2}\sum_{u}\sum_{v}(a_u-a_v)(b_u-b_v )\\
+\end{aligned}
+$$
+这里的推导要结合上一行才可以理解。
+我们知道，$(a_u-a_v)(b_u-b_v) \geqslant 0$, $(u,v=1,2,\dotsi,n)$
+因为前者后者，要么都为正，要么都为负
+所以 $n\sum ab - \sum a\sum b \geqslant 0$
+If and only if
+$a_1=a_2=\dotsi=a_n$ or $b_1=b_2=\dotsi=b_n$
+
+Proof 2,
+还要用证明2，作者真的是精力充沛啊！也许他觉得是小菜一碟，举手之劳呢。
+Let
+$$
+a_1=p_1,a_2-a_1=p_2,\dotsi,a_n-a_{n-1}=p_n,\\
+b_1=q_1,b_2-b_1=q_2,\dotsi,b_n-b_{n-1}=q_n\\
+$$
+with $p_v \geqslant 0, q_v \geqslant 0$, $v=2,3,\dotsi,n$, 这里是从$v=2$ 开始，注意了。$(2)$ 式可以写成
+$$
+n\sum_{v=1}^{n}\big(\sum_{i=1}^{v}p_i \big)\big( \sum_{j=1}^{v}q_j \big) \geqslant \big( \sum_{i=1}^{n}(n+1-i)p_i \big)\big( \sum_{j=1}^n(n+1-j)q_j \big)
+$$
+能想出这个式子，真的不简单。
+or
+$$
+\sum_{i,j=2}^n n[n+1-max(i,j)]p_iq_j \geqslant \sum_{i,j=2}^n(n+1-i)(n+1-j)p_iq_i
+$$
+上面这个不等式的右边，实际上就是简单的展开。不等式的左边，看起来就是这样，因为显然$n \geqslant [n+1-min(i,j)]$
+Since
+$$
+(n+1-i)(n+1-j)\equiv [n+1-max(i,j)][n+1-min(i,j)]
+$$
+the last inequality becomes
+$$
+\sum_{i,j=2}^{n}[n+1-max(i,j)][min(i,j)-1]p_ip_j \geqslant 0
+$$
+This second proof is due to D. Djokovic.
+
+**Generalization**
+归纳, If
+$$
+0 \leqslant a_1 \leqslant a_2 \leqslant \dotsi \leqslant a_n \\
+0 \leqslant b_1 \leqslant b_2 \leqslant \dotsi \leqslant b_n \\
+0 \leqslant c_1 \leqslant c_2 \leqslant \dotsi \leqslant c_n \\
+$$
+then
+$$
+\frac{\sum a}{n}\frac{\sum b}{n}\dotsi\frac{\sum c}{n} \leqslant \frac{\sum ab\dotsi c}{n}
+$$
+
+举个例子:
+If $a,b,c$是正数, $n$ 是个自然数，也就是大于零的整数, then
+$$
+(a+b+c)^n \leqslant 3^{n-1}(a^n + b^n + c^n)
+$$
+证明:
+$1^\circ$,  不等式$(3)$ 取等号当且仅当$a_1=a_2=\dotsi=a_n$ 或者 $b_1=b_2=\dotsi=b_n$ 才成立
+$2^\circ$ ,在归纳的切比雪夫不等式里，$a_n,b_n,c_n$都是大于等于0的数。
+什么意思？证明没证明呢?
+
+## 0.4 Abel's Inequality
+阿贝尔不等式
 
 
 

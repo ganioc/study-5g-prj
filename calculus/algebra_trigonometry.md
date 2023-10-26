@@ -30,5 +30,36 @@ field,
 an important part of advanced modern algebra,
 21                                    
 
+set,
+subsets, $B \subset A$,B is a subset of A, B is contained in A,
+null set, $\empty$, void set, empty set,
+
+## 8. 集合的代数运算， The algebra of sets
+$U$ as the universal set,集合, 
+union
+intersection of 2 subsets,
+$X\bigcup Y$= {set of all elements that belong to X or to Y or to both}   
+$X \bigcap Y$= {set of all elements that belong to both X and Y}
+
+Venn diagrams, 维恩图, 满足的运算
+Communicative laws, 交换律,
+$A\cup B=B\cup A, A\cap B=B\cap A$
+Associative laws, 结合律,
+$(A\cup B)\cup C = A\cup(B\cup C)$
+$(A\cap B)\cap C = A \cap(B\cap C)$
+Distributive law, 分配率
+$A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$
+Identity laws, 同一律,
+$A\cup \empty = A, A\cap U = A, A\cup U=U, A\cap \empty=\empty$
+
+Complement of $A$, $\tilde{A}$
+DeMorgan's laws,德摩根定律
+$\overline{A\bigcup B}=\tilde{A}\bigcap \tilde{B}$
+$\overline{A\bigcap B}=\tilde{A}\bigcup \tilde{B}$
+
+Boolean algebra, 布尔代数, 这个分配率太重要了啊，神器!
+
+## 9 Variables
+变量, 
 
 
