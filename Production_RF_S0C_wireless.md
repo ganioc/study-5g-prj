@@ -558,11 +558,42 @@ Can be calculated from the same resultant array as the DNL, The starting and end
 ## 6.8 Real Signals and Their Representations.
 
 
+# chap 8
+### 8.1.2 Types of Noise
+噪声种类，这里分成2种，
+* fundamental, known as white noise, thermal noise, shot noise, quantization noise, $1/f$ noise, 
+* non-fundamental, can arise from electromagnetic coupling, cooling inducted current flow in semiconductors, ground loops due to differing potential reference points, or oscillations in amplifiers.
 
+区别在于能否有能力来to reduce or eleiminatre the noise, 基本噪声是无法消除或减弱的。
 
+**热噪声**
+>电子随机运动造成的噪声, broadband noise, 由于温度。random motion. Johnson noise, and mathematical description was drived by Nyquist.白噪声。a flat power density over some finite bandwidth. 
 
+1928年, Nyquist derived a formula to describe thermal noise:
+$$
+\overline{v^{2}}=\frac{4pfBR}{e^{\frac{pf}{kT}-1}}
+$$
+Considering that at microwave frequencies, $pf << kT$, the first two terms of a Taylor series expansion can be substituted into as
+$$
+e^{\frac{pf}{kT}}-1 \sim \frac{pf}{kT}
+$$
+Substituting it into above equality leads to
+$$
+\overline{v^2}=4kTBR
+$$
+不是跨所有频谱有效的，因此成为Rayleigh-Jeans approximation, and is valid unless very high frequencies or very low temperatures are used.
 
+$-174.15dBm/Hz$,只依赖于温度和带宽。
 
+**shot noise**
+散粒噪声, Schottky noise, 肖特基噪声, Schottky described it mathematically in 1928. due to random fluctuations of charge carriers across a potential barrier in electronic devices. 
+在$10^{15}$Hz以下, 1000 THz, charge carriers have a finite travel time within the device. 对于RF的频率和SoC测试(< 20GHz), the roll off is negligible. 
 
+**$1/f$ noise**
+flicker noise, 闪烁噪声, it's origin is not fully understood. Discovered soon after the invention of the transistor when scientists were trying to eliminate noise from audio transistors. 
+$$
+P_{flicker} \propto \frac{1}{f}
+$$
+频率越低越高，频率越高越低
 
 
