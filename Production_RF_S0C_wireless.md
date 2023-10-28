@@ -2,6 +2,10 @@
 
 混合信号器件的测试,mixed-signal devices,
 
+参考书籍:
+Artech House Microwave Library,
+
+
 
 **Pick-and-Place**
 Using suction, 移动DUT从传送tray到load board contactor socket,
@@ -596,4 +600,70 @@ P_{flicker} \propto \frac{1}{f}
 $$
 频率越低越高，频率越高越低
 
+### 8.2.6 Y-Factor,
+The Y-factor is a ratio of hot to cold nois powers (in watts)
+$$
+Y=\frac{N_h}{N_c}
+$$
+### 8.2.7 Mathematically calculating Noise Figure
+利用上面引进的心得变量，来测量噪声系数。
+ENR, Excess Noise Ration, 
+$$
+ENR=\frac{T_h-T_c}{T_0}
+$$
+计算噪声系数,
+$$
+F=\frac{ENR}{Y-1}\\
+NF=10\log{(ENR)}-10\log{(Y-1)}\\
+NF=ENR_{db} -10\log({Y-1})\\
+$$
+# 8.2.8 Measuring Noise Figure
+测试无线或SoC设备的噪声系数的方法一般有三种:
+**direct method**
+简单，只适用于高增益器件, 
+直接测量噪声，from
+$$
+F_1=\frac{N_0}{kT_0BG}
+$$
+A point away from the peak on the signal of interest may be taken to be the noise power, $N_0$. 
 
+**Y-factor**
+foundation for most noise-figure meters and analyzers.
+$$
+\tag{8.27a} m=\frac{(N_2-N_1)}{(T_2-T_1)}
+$$
+$N=kGBT$
+斜率相等, 则$m=kGB$
+$$
+F_1=F_{12}-\frac{F_2 -1}{G1}
+$$
+首先将噪声源和噪声分析仪直接相连,测量hot, cold两个状态下的噪声功率值.
+$$
+Y_2=\frac{N_{h2}}{N_{c2}}\\[0.5em]
+F_2=\frac{ENR}{Y_2 -1}\\
+$$
+ENR是噪声源的特性, 
+接下来,接入待测设备DUT, 测量噪声因子
+$$
+Y_{12}=\frac{N_{h12}}{N_{c12}}\\
+F_{12}=\frac{ENR}{Y_{12}-1}\\
+$$
+多次测量求平均的方式获取一个比较好的Y-factor值。 DUT的增益$G_1$， the gain of the DUT
+$$
+G_1=\frac{N_{h12}-N_{c12}}{N_{h2}-N_{c2}}
+$$
+得到所有的值之后，就可以计算出最终的噪声系数值$F_1$
+
+测量前的校准。许多噪声源采用28-V供电, 作为标准。最精准的测试方法。只要设备是完美匹配的。由于待测设备之间的差异性，我们不可能匹配所有的器件。Y-factor方法没有考虑的相位信息，which can be used to correct for the impedance mathc.
+
+**vector-corrected cold noise method**
+disigned for production testing,
+用来弥补DUT和tester之间的失配问题。引入反射系数$\Gamma$
+$$
+F_1(\Gamma)=F_{12}(\Gamma)-\frac{F_2(\Gamma)-1}{G_1}\\
+$$
+
+1. 进行校准, 测量full S-parameter,
+2. 
+
+Over.
