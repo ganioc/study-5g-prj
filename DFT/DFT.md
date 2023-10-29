@@ -9,8 +9,33 @@
 5. Theory and Application of Digital Signal Processing, L. R. Rabiner
 6. Digital Signal Processing, A. V. Oppenheim
 
-# Complex Variables and Applications
-复变量和应用
+### Complex Variables and Applications
+复变量和应用, 这方面的书看了2本。
+
+# 前言
+课程, Introduction to Digital Signal Processing and Discrete Fourier Transform (DFT). For entering Music Ph.D students.
+
+需要 a good high-school math background. Calculus exposure is desirable, but not required.
+
+# chap 1 Introduction to the DFT
+DFT, Discrete Fourier Transform,
+
+## 1.1 定义
+信号 $x$ 的离散傅里叶变化为
+$$
+X(w_k) \triangleq \sum_{n=0}^{N-1}x(t_n)e^{-jw_kt_n}, k=0,1,2,...,N-1
+$$
+and its inverse (IDFT) is given by
+$$
+x(t_n)=\frac{1}{N}\sum_{k=0}^{N-1}X(w_k)e^{jw_ktn}, n=0,1,2,...,N-1
+$$
+
+
+
+
+
+
+
 
 
 
