@@ -30,11 +30,14 @@ $$
 x(t_n)=\frac{1}{N}\sum_{k=0}^{N-1}X(w_k)e^{jw_ktn}, n=0,1,2,...,N-1
 $$
 
+where:
+$x(t_n)\triangleq$ input signal amplitude at time $t_n$ (sec)
+$t_n \triangleq nT$ nth sampling instant (sec)
+$n \triangleq $ sample number (integer), 采样点数量
+$T \triangleq$ sampling period (sec), 采样的时间间隔
 
 
-
-
-
+   
 
 
 
