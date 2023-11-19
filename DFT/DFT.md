@@ -349,9 +349,83 @@ $$
 # chap 5 Sinusoids and Exponentials
 正弦函数和指数函数
 
+定义域$-\pi \leqslant \phi \lt \pi, \pi \in [-\pi, \pi)$.
 
+A-440 tuning fork, 音叉, 振动频率, 
+$$
+x(t) = A\sin{(2\pi 440 t + \phi)}
+$$
+正弦波是最基本的物理运动方式
+正弦波是线性系统的eigenfuncitons, 本征函数， 用于分析滤波器中的reverberator(混响器，反射器), equalizers(平衡器),auditory nerve(听觉神经),  
 
+in-phase, quadrature,
+每一个in-phase, 90度差的phase-quadrature component的合成,都可以表示为一个单独的正弦波，该正弦波有一定的相位延迟。
 
+一个正弦波有一个重要特征，就是closed with respect to addition. 将同频率的信号，各种信号，不同的幅度，不同的相位，加在一起的话，还是会得到一个同样频率的信号。
+
+对每一个线性、时不变系统，LTI, copying, scaling, delaying, summing it's input signals 来生成输出信号output signals. 当一个频率的正弦信号输入的话，同样频率的信号会出现在输出。系统只会改变信号的幅度和相位。所以LTI 系统的eigenfunctions就是本征函数， eigenfunctions. 如果系统是非线性，或者时变的话，那么系统输出会产生新的频率。
+
+### 5.1.5 Constructive and Destructive Interference
+增强性地，削弱性地干扰。 
+混响器在一个房间里生成nodes,和antinodes,对正弦波, 可以用simple comb filter来表示。梳状滤波器的输入是正弦波,对于一个线性和时不变系统而言，输出也是正弦波。
+
+## 5.2 Exponentials
+指数函数 $a(t) = A e^{-t/\tau}, t \geqslant 0$
+$\tau$为指数函数的时间常数, 指数衰减的重要性。在自然界中, 一个线性先真气，例如乐器的弦，木管孔，在响应暂时的激励时，它的衰减都是表现为指数衰减的形式。在混响室内，当直接的声音停止时，混响的能量在房间内的衰减也是指数衰减的。所有非激励的震荡衰减都是指数形式的。
+指数增长发生时，当一个量的增长速度与当前的数量成正比时。指数增长是不稳定的，因为没有什么东西是可以指数成长的，一定会遇到一些实际的限制。
+
+### 5.2.2 Audio Decay Time(T60)
+音频信号的衰减时间,$1/e$ 太小了，在结构声学里，更加常用的一个衡量参数是$t_{60}$, or $T60$, 衰减了60dB的时间,也就是$10^{-60/20} = 0.001$
+$$
+t_{60} = \ln(1000)\tau \approx 6.91\tau 
+$$
+
+## 5.3 Complex Sinusoids
+复数正弦信号。按照Euler's Identity
+$$
+e^{j\theta} = \cos(\theta) +j\sin(\theta)
+$$
+Setting $\theta = \omega t + \phi$, 我们得到复正弦信号的表达式
+$$
+s(t) \triangleq Ae^{j(\omega t + \phi)}= A\cos(\omega t + \phi) + jA\sin(\omega t + \phi)
+$$
+恒包络信号
+$$
+|s(t)| \equiv A
+$$
+constant modulus, $\equiv$ identically equal to for all $t$
+相位为 $\angle s(t) = \omega t + \phi$
+The derivative of the phase of the complex sinusoid gives its frequency
+$$
+\frac{d}{dt}\angle s(t) = \omega = 2\pi f
+$$
+
+### 5.3.1 Circular Motion
+counter clockwise, clockwise, $e^{j\omega t}$
+$\omega > 0$, a positive-frequency sinusoid,
+$\omega < 0$, a negative-frequency sinusoid, 
+
+### 5.3.2 Projection of Circular Motion
+圆周运动的投影, 在x轴、y轴上的投影。
+复信号在正交信号集上的投影,
+
+### 5.3.4 Analytic Signal and Hilbert Transform Fitlers
+analytic signal: a signal without negative-frequency component
+对于连续时间信号，每一个解析信号$z(t)$都可以表示为
+$$
+z(t) = \frac{1}{2\pi} \int_{0}^{\infin}Z(w)e^{jwt}dw
+$$
+其中$Z(w)$为复系数(设置了幅度和相位),
+一个解析信号可以表示为一个复信号和它的共轭值之和。在数学上，如果$x(t)$是一个实数信号，它对应的解析信号，表示为$x_a(t)$形式的话，为:
+$$
+x_a(t) = x(t) +  * HilbertTransform[x(t)]
+$$
+
+一个实际的正弦信号，可以转换为一个正频率复正弦信号$Aexp[j(wt+\phi)]$, by simply generating a phase-quadrature component$A\sin(wt+\phi)$
+$$
+Ae^{j(wt+ \phi)}=A\cos(wt+\phi) + jA\sin{(wt+\phi)}
+$$
+对于更加复杂的信号，(由多个正弦信号组成),可以构造一个滤波器，对所有的信号$\cos(wt)$延迟1/4周期, 
 
 
 
