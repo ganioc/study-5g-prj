@@ -425,7 +425,113 @@ $$
 $$
 Ae^{j(wt+ \phi)}=A\cos(wt+\phi) + jA\sin{(wt+\phi)}
 $$
-对于更加复杂的信号，(由多个正弦信号组成),可以构造一个滤波器，对所有的信号$\cos(wt)$延迟1/4周期, 
+对于更加复杂的信号，(由多个正弦信号组成),可以构造一个滤波器，对所有的信号$\cos(wt)$延迟1/4周期, 这个被称为Hilbert transform filter. $H_t\{x\}$, 对正频率相移$-\pi/2$, 对负频率相移$\pi/2$.
+使用实信号$x(t)$和它的希尔伯特变换$y(t)=H_t\{x\}$组合成一个新的复信号$z(t)=x(t) + j y(t)$, 则$z(t)$就是这个解析信号，不包含负频率的，与$x(t)$对应的。
+
+在这个例子里面
+$$
+x(t)=2\cos{(w_0t)} = exp(jw_0t) + exp(-jw_0t)
+$$
+计算$y(t)$
+$$
+y(t) = exp(jw_0t - j\pi/2) + exp(-jw_0t +j\pi/2) \\
+= -jexp(jw_0t) +jexp(-jw_0t) \\
+= 2\sin(w_0t)
+$$
+那么这个解析信号就是
+$$
+z(t)=2\cos(w_0t) + j2\sin(w_0t) = 2e^{jw_0t}
+$$
+对信号$A(t)\cos(w_0t)$,则有$z(t)\approx A(t)e^{jw_0t}$
+
+### 5.3.5 Generalized complex sinusoids
+复正弦信号,如果允许 exponential amplitude envelope $y(t)\triangleq Ae^{st}$
+$A$和$s$时复数, and further defined as
+$$
+A_o = Ae^{j\phi}\\
+s_o = \sigma + jw \\
+y(t) = A_oe^{s_0t} \\
+= Ae^{\sigma t}[\cos(wt +\phi) + j\sin(wt+\sigma)]\\
+=  Ae^{-t/\tau}[\cos(wt +\phi) + j\sin(wt+\sigma)]\\
+$$
+
+### 5.3.6 Sampled Sinusoids采样正弦信号
+在离散音频信号处理领域，采样频率需要大于40kHz, CD音质, $f_s=44.1kHz$, Sony使用$f_s=44.025kHz$, DAT digital audio tape使用$f_s = 48kHz$
+
+$T\triangleq 1/f_s$为sampling period, replace t by $nT$, $n$为采样序列
+$$
+\begin{aligned}
+  y(nT)&= Ae^{j\phi}e^{(\sigma + jw)nT} \\
+    &= A[e^{\sigma T}]^n[\cos(wnT + \phi)+j\sin(wnT+\phi)]
+\end{aligned}
+$$
+
+我们获得一个离散时间complex sinusoid.
+$$
+x(n)\triangleq = z_0z_1^n=Ae^{j\phi}e^{jwnT}, n=0,1,2,3,\dotsi
+$$
+我们称$z_0$为sinusoidal phasor, 相位, $z_1^n$为sinusoidal载波
+
+**为什么称Phasor相位重要?**
+LTI线性时不变系统,对信号只做4种操作: copying, scaling, delaying, adding.
+Weighted sum. delayed copies of a complex sinusoid:
+$$
+y(n) = \sum_{i=1}^Ng_ix(n-d_i)
+$$
+$g_i$是权重值weighting factor, $d_i$是$ith$ delay, $x(n)=e^{jwnT}$
+载波项$e^{jwnT}$可以被提取出来
+$$
+y(n)=e^{jwnT}\sum_{i=1}^{N}g_ie^{-jwd_iT}
+$$
+
+对于DFT来说，内积可以写为
+$$
+\begin{aligned}
+  \langle y,x \rangle \triangleq & \sum_{n=0}^{N-1}y(n)\overline{x(n)}\\
+  =& \sum_{n=0}^{N-1}y(n)e^{-j2\pi nk/N} \\
+  \triangleq & DFT_k(y) = Y(w_k)
+\end{aligned}
+$$
+DTFT, Discrete Time Fourier Transform,离散时间傅里叶变换, 允许无限数量的采样而不是N个采样， 这样的话频率是连续的
+$$
+\langle y,x \rangle = \sum_{n=0}^{\infin}y(n)e^{-jwnT}\triangleq DTFT_w(y)
+$$
+这里假设n<0时，信号为零,单边带傅里叶变换
+如何设$x(n)=z^n$, then 内积变为
+$$
+\langle y,x \rangle = \sum_{n=0}^{\infin}y(n)z^{-n}
+$$
+这就是z变换的定义,这是DTFT的一般形式。DTFT等价于在Z平面的单位元上的变换和计算。那么将计算从单位圆上扩展到整个复平面，有什么好处呢?
+
+* 允许不稳定的指数信号的转换，只要增长的速率小于指数信号
+* z transform有一个deeper代数结构 over the 复平面, 例如有限信号的z变换只是z平面上的一个多项式polynomial. 它的特性可以从z平面上的零值获知。指数信号的z变换只是一个点。z变换在那个电商趋于无穷。pole of the transform.Poles and Zeros 在recursive digital filters的分析中被广泛使用. 任何有限阶，线性，时不变，离散时间系统都是由z平面上的零点和极点来确定的
+  
+在连续时间场景，我们有傅里叶变换，将y映射到连续时间正弦信号$x(t)=e^{jwt}$,内积为
+$$
+\langle y,x \rangle = \int_{0}^{\infin}y(t)e^{-jwt}dt \triangleq Y(w)
+$$
+
+最后z变换的连续时间情况是拉普拉斯变换，将信号映射到指数增长或衰减的正弦信号上
+$$
+\langle y,x \rangle = \int_{0}^{\infin}y(t)e^{-st}dt \triangleq Y(s)  
+$$
+在s平面的$jw$ axis上，傅里叶变换与拉普拉斯变换相同。
+
+### 5.3.10 比较模拟和数字复平面
+在信号处理领域，习惯于使用$s$作为拉普拉斯变换的变量做连续时间分析， $z$作为离散时间分析的z变换的变量. s平面和z平面都是复平面。
+
+另外还有其它的变化，比如STFT, short-time Fourier Transforms, wavelet transforms, projecting onto windowed complex sinusoids.
+
+
+# chap 6 Geometric Signal Theory
+几何信号理论,
+
+
+
+
+
+
+
 
 
 
