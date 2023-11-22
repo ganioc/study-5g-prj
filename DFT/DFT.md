@@ -524,13 +524,264 @@ $$
 
 
 # chap 6 Geometric Signal Theory
-几何信号理论,
+几何信号理论, 包括vector spaces, 矢量空间，norms, inner products, orthogonality, 正交性, projection of one signal onto another, 投射, elementary vector space operations, 基本矢量空间操作。
 
+## 6.1 DFT
+长度为N的复数序列Complex sequence $x(n), n= 0,1,2,...,N-1$, 离散傅里叶变换可以定义为
+$$
+X(w_k)\triangleq\sum_{n=0}^{N-1}x(n)e^{-jw_kt_n}=\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N}, k=0,1,2,...,N-1 \\
+$$
+$t_n \triangleq nT = nth$  sampling instant(sec) 
+$w_k \triangleq k\Omega = kth $ frequency sample (rad/sec) 
+$T \triangleq 1/f_s =$ time sampling interval (sec) 
+$\Omega \triangleq 2\pi f_s/N= $frequency sampling interface (sec) 
 
+我们现在可以完全地来理解这种转换的核心意义
+$$
+e^{-jw_k t_n} = \cos(w_kt_n) -j\sin(w_kt_n)
+$$
+The kernel 包含了复正弦信号的N个离散的频率点$w_k$, 均匀地分布在$0$到采样速率之间$w_s \triangleq 2\pi f_s$
+计算时域信号$x(n)$映射在复正弦信号上的投影, 
+$X(w_k)$ , 在频率点$w_k$的DFT,衡量了输入信号$x$在该频点上的投影的幅度和相位。
 
+## 6.2 信号作为矢量, Vectors
+DFT中，信号和频谱都是长度为N的。
+我们将$x$看为N维矢量空间中的一个矢量$x^1$. 那么每个采样$x(n)$ 都是这个空间里的一维。一个矢量$x$在数学上是N维空间上的一个点，它的坐标表示为$(x_0,x_1,x_2,...,x_{N-1})$。称为$N\text{-} tuple$。N元组. $x_n$可以理解为从原点$0$指向$x$的一个矢量。
 
+$x_n \triangleq x(n)$, 所有的信号的长度都是N, 把每一段信号，N个点的, 都当做一个N维信号点。
 
+## 6.3 矢量运算
+存在两个矢量$R^{N}$, $\underline{x}=(x_0,x_1,x_2,...,x_{N-1})$, $\underline{y}=(y_0,y_1,y_2,...,y_{N-1})$, vector sum定义为elementwise addition. 将每个元素相加,
 
+parallelogram, 平行四边形
+congruent, 一致的，全等的,
+
+## 6.5 信号metrics?
+信号的度量,
+signal $x$的平均, sample mean,均值，平均值,
+$$
+u_x \triangleq \frac{1}{N}\sum_{n=0}^{N-1}x_n, 
+$$
+信号$x$的能量, sum of squared moduli
+$$
+\varepsilon_x \triangleq \sum_{n=0}^{N-1}|x_n|^2
+$$
+The average power of a signal $x$定义为每个样本的能量值, the energy per sample
+$$
+P_x \triangleq \frac{\varepsilon_x}{N} = \frac{1}{N}\sum_{n=0}^{N-1}|x_n|^2
+$$
+The root mean square (RMS) level of signal $x$ is simple $\sqrt{P_x}$,
+信号$x$的方差, variance, sample variance,
+$$
+\sigma_x^{2} \triangleq \frac{1}{N}\sum_{n=0}^{N-1}|x_n-u_x|^2
+$$
+对于实数信号来说$\sigma_x^2 = P_x - u_x^2$
+我们将方差看做是非恒定的信号的分量，组成部分, 变化的部分，非直流量。
+stochastic processes, 随机过程,
+time series analysis, 时间序列分析,
+信号$x$的norm, square root of the total energy
+$$
+||x|| \triangleq \sqrt{\varepsilon_x}=\sqrt{\sum_{n=0}^{N-1}|x_n|^2}
+$$
+我们可以把认为是矢量空间中的$x$的长度, $||x-y||$定义为$x$和$y$之间的距离. 根据三角形不等式, $||x+y|| < ||x|| +||y||$, 通过几何的方式来理解。
+
+normalized $L_2$ norm,
+更统一地说, the $L_p$ norm of $x \in C^N$ 定义为
+$$
+||x||_p \triangleq (\sum_{n=0}^{N-1}|x_n|^p)^{1/p}
+$$
+$L_p$ norms
+* p=1, $L_1$, absolute value, city block norm,
+* p=2, $L_2$, Euclidian, root energy, least squares norm,
+* p=$\infin$, $L_{\infin}$, Chebyshev, supremum, minimax, uniform norm
+
+在$p=\infin$的情况下，a limiting case变成
+$$
+||x||_{\infin} = \max_{0\leqslant n \lt N}|x_n|
+$$
+还有很多其它可能得求norm的选择，为了可以求norm on $C^{N}$, 一个实数值的信号方程$f(n)$必须满足下列3个特性
+1. $f(\underline{x})=0 \Leftrightarrow x=0$
+2. $f(x+y) \leqslant f(x) + f(y)$
+3. $f(c\underline{x}) = |c|f(\underline{x}), \forall c \in C$
+
+第一个称为positivity,
+第二个称为subadditivity, triangle inequality
+第三个称为absolutely homogeneous with respect to scalar multiplication 
+
+以上在数学上称为Banach space,巴拿赫空间, normed linear vector space. 赋范线性向量空间, 
+要成为一个线性向量空间，必须对矢量加和标量乘是闭合的。
+
+## 6.6 内积
+又称为点积, 两个矢量相乘生成一个标量。将内积加入巴拿赫空间的话将生成 一个希尔伯特空间, Hilbert space, 或inner product space. ${C^N, C}$这里仅考虑这种形式，复数的N维，和复数标量。
+
+两个复数N-vectors, x和y的内积定义为
+$$
+\langle x,y \rangle \triangleq \sum_{n=0}^{N-1}x(n)\overline{y(n)}
+$$
+conjugate symmetric
+$$
+\langle y,x \rangle = \overline{\langle x,y \rangle}
+$$
+内积输入$C^N \times C^N$ 输出$C$,也就是复数域, 2个长度为N的复数向量映射为一个复数标量。
+
+### 6.6.1 Linearity of the Inner Product
+内积的线性,
+$f(x)$称为是线性的, for all $x_1 \in C^N$和$x_2 \in C^N$, 所有的标量$c_1,c_2 \in C$, 我们有
+$$
+f(c_1x_1 + c_2x_2) = c_1f(x_1) + c_2f(x_2)
+$$
+线性linearity支持两个特性
+* additivity: $f(x_1 + x_2) = f(x_1) + f(x_2)$
+* homogeneity: $f(c_1x_1)=c_1f(x_1)$
+* $\langle c_1x_1+c_2x_2,y \rangle = c_1\langle x_1,y\rangle+c_2\langle x_2,y\rangle$
+* $\langle x,y_1+y_2\rangle = \langle x,y_1 \rangle + \langle x,y_2 \rangle$
+* $\langle x,c_1y_1 \rangle = \overline{c_1}\langle x,y_1 \rangle$
+
+bilinear operator,
+
+### 6.6.2 Norm induced by the Inner Product
+我们定义了a norm on $x \in C^N$, 使用内积
+$$
+||x|| \triangleq \sqrt{\langle x,x \rangle}
+$$
+
+### 6.6.3 Cauchy-Schwarz Inequality
+柯西-施瓦茨 不等式, $|\langle x,y \rangle| \leqslant ||x|| \cdot ||y||$
+当且仅当$x=cy$时，等号成立，$c$为标量
+
+对于实数矢量$x\in R^N, y \in R^N$, 如果x,y都不为零,求单位矢量
+$$
+\tilde{x} \triangleq x/||x|| \\
+\tilde{y} \triangleq y/||y|| \\
+$$
+在一个单位球面上， unit ball in $R^N$, a hypersphere of radius 1, $x,y$都是实数,
+$$
+\begin{aligned}
+0 \leqslant ||\tilde{x}-\tilde{y} ||^2 &= \langle \tilde{x}-\tilde{y}, \tilde{x} -\tilde{y} \rangle \\
+&= \langle \tilde{x},\tilde{x} \rangle - \langle \tilde{x},\tilde{y}\rangle - \langle \tilde{y},\tilde{x} \rangle +\langle \tilde{y},\tilde{y} \rangle \\
+&= ||\tilde{x}||^2 -[\langle\tilde{x},\tilde{y}\rangle + \overline{\langle \tilde{x},\tilde{y} \rangle}] + ||\tilde{y}||^2 \\
+&= 2 - 2 \real\{ \langle \tilde{x},\tilde{y} \rangle \} \\
+&= 2 - 2 \langle \tilde{x},\tilde{y} \rangle
+\end{aligned}
+$$
+我们可以得到$\langle \tilde{x},\tilde{y}  \rangle \leqslant 1$
+因为$||x||=1, ||y||=1$
+$$
+re\{ \langle x,y \rangle \} \leqslant ||x||\cdot ||y|| \\
+|\langle x,y \rangle | \leqslant ||x||\cdot ||y|| \\
+$$
+
+### 6.6.4 Triangle Inequality
+三角不等式, $||x+y|| \leqslant ||x|| + ||y||$
+做一些证明，使用Schwarz Inequality
+$$
+\begin{aligned}
+||x+y||^2 &= \langle x+y,x+y \rangle \\
+&= ||x||^2 + 2 re\{\langle x,y \rangle  \} + ||y||^2 \\
+&\leqslant ||x||^2 + 2|\langle x,y \rangle| + ||y||^2 \\
+&\leqslant ||x||^2 +2||x||\cdot||y|| + ||y||^2 \\
+&= (||x|| + ||y||)^2 \\
+\Rightarrow ||x+y|| &\leqslant ||x|| + ||y|| \\
+\end{aligned}
+$$
+
+### 6.6.5 Triangle Difference Inequality
+三角差不等式
+三角形的任意一边的长度都比另两边的差要长
+$$
+||x-y|| \geqslant | ||x|| - ||y|| | \\
+$$
+
+### 6.6.6 Vector Cosine
+矢量Cosine
+Cauchy-Schearz Inequality可以写作
+$$
+\frac{|\langle x,y \rangle|}{||x||\cdot ||y||} \leqslant 1
+$$
+如果x,y是实数矢量, 我们总可以发现一个实数角度$\theta$, 满足
+$$
+\cos(\theta) \triangleq \frac{|\langle x,y \rangle|}{||x||\cdot ||y||}
+$$
+$\theta$称为两个实数矢量$R^N$,x,y之间的角度, 在复数域$C^N$,我们可以定义$|\cos(\theta)|$
+
+### 6.6.7 Othogonality 正交性
+矢量x,y是正交的，也就是垂直的, 如果$\langle x,y \rangle = 0$
+
+### 6.6.8 The Pythagorean Theorem in N-Space
+N维空间的Pythagorean定理, $||x+y||^2 = ||x||^2 + ||y||^2$
+N维空间的关系可以写为
+$$
+\begin{aligned}
+||x+y||^2 &= \langle x+y,x+y \rangle \\
+&= \langle x,x \rangle + \langle x,y \rangle + \langle y,x \rangle + \langle y,y \rangle \\
+&= ||x||^2 + ||y||^2 + 2re\{ \langle x,y \rangle  \} \\
+\end{aligned}
+$$
+另一个判断条件是 $||x-y||^2 = ||x||^2 + ||y||^2$
+
+### 6.6.9 Projection
+投影, 正交投影, $y \in C^N$在$x \in C^N$上的投影，定义为
+$$
+P_x(y) \triangleq \frac{\langle y,x \rangle}{||x||^2}x
+$$
+前一部分被称为投影的系数， coefficient of projection. 如果x是一个单位矢量的话，投影系数仅是y和x的内积
+
+## 6.7 Signal Reconstruction from Projections
+我们现在知道怎样将一个信号投射到另一个信号上了。我们现在需要学习如何重构一个信号$x \in C^N$, 从它到N个不同的矢量的投影, $s_k, k=0,1,2,...,N-1$, 这就给了我们inverse DFT operation, 反离散傅里叶变换操作。
+
+原始信号$x$可以清晰地表示为投射到坐标轴上的各个投影之和:
+$$
+x=(x_0,...,x_{N-1})=(x_0,0,...,0) + (0,x_1,...,0) +\\
+\dotsi + (0,...,0,x_{N-1})
+$$
+为了最大的简单性，选择正的单位长度作为坐标轴方向的矢量,
+$x$投射到$e_0$上的投影，可以定义为:
+$$
+P_{e_0} \triangleq \frac{\langle x,e_0 \rangle}{||e_0||^2}e_0 =\langle [x_0,x_1],[1,0]\rangle e_0 \\
+(x_0\cdot 1 + x_1\cdot 0)e_0=x_0 e_0 = [x_0,0]
+$$
+从投影恢复原信号的方式，即为将这些投影加起来即可
+$$
+x=P_{e_0}(x) + P_{e_1}(x) = (x_0,x_1)
+$$
+这里坐标轴矢量是互相正交的。因为是单位长度的，
+更有趣的是，当我们将信号$x$投影到一系列矢量时，可以看做在$C^N$上的坐标变换。对于DFT情况, 新矢量可以选择为sampled complex sinusoids, 采样的复正弦信号。
+
+### 6.7.1 在二维情况下转换坐标轴
+矢量集必须是正交的，
+orthogonalizing process, Gram-Schmidt orthogonalization, to any N linearly independent vectors in $C^N$, 组成一个正交集合。
+N空间必须要有N个矢量,
+
+正式定义:
+一组矢量可以组成一个矢量空间, vector space, 
+任意两个矢量$x$, $y$, $x+y$, $cx$也在这个集合内，闭合，$c$是一个标量。
+
+A set of linearly independent vectors which spans a vector space is called basis for that vector space.
+矢量空间的基
+
+最基本的矢量集合就是natural basis for $C^N$， the nth basis vector is $e_n = (0,...,1,0,...,0)$
+
+用基来表示一个矢量的方法是唯一的, unique,
+然而对基的选择并不是唯一的, 一个新的矢量基可以通过把所有基旋转一个角度来实现。无限数量的基可以生成。
+
+DFT可以看做将$C^N$里的natural basis, $\{e_n\}_{n=0}^{N-1}$,转换为以sinusoidal basis的矢量，$\{s_k\}_{k=0}^{N-1}$,正弦基，包含了长度为N的sampled complex sinusoids at frequencies $w_k=2\pi kf_s/N, k=0,1,2,...,N-1$. 
+我们只会选择单位幅度，零相移的复正弦信号作为傅里叶变换的频域的基集。
+
+一个矢量空间的两个基的矢量数是相同的。
+
+称为空间的维度, N, N维空间, N-space,
+
+本书仅考虑有限维的矢量空间。然而离散时间傅里叶变换和傅里叶变换两者都需要无限维的基集，因为在时间域和频域都存在无穷数量的采样点。
+
+任意的矢量$x\in C^N$投射到正价基集合的投影，可以被构造出$x$来。
+
+### 6.7.3 Gram-Schmidt Orthogonalization
+格莱姆-施密特正交化法,
+给定一组N个线性独立矢量, $s_0,...,s_{N-1}$ from $C^N$, 我们可以构造一个正交集合$s_0,...,s_{N-1}$, 可以是原来集合的线性组合，可以构成整个空间, span the same space.
+
+这部分好像以前学过的!
+
+直到最后生成正交基集合。
 
 
 
