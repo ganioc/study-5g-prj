@@ -785,4 +785,3 @@ DFT可以看做将$C^N$里的natural basis, $\{e_n\}_{n=0}^{N-1}$,转换为以si
 
 
 
-
