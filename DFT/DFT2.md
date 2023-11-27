@@ -537,6 +537,165 @@ $$
 得证$Y(k)=X(k)$, by the modulo indexing of X, L copies of X are generated as $k$ goes from 0 to $M-1=LN - 1$
 
 ### 8.4.11 Downsampling Theorem (Aliasing Theorem)
+欠采样定理。For all $x \in C^N$
+$$
+SELECT_L(x)\leftrightarrow \frac{1}{L}ALIAS_L(X)
+$$
+let $Y(k^{'})\triangleq ALIAS_{L,k^{'}}(X)$. Y is length $M=N/L$, L is the downsampling factor.
+
+### 8.4.12 Zero Padding Theorem
+填零定理,
+理想的bandlimited interpolation of a spectrum$X(w_k)\triangleq DFT_k(x), x\in C^N$
+对于一个任意的新频率$w \in [-\pi, \pi)$
+$$
+X(w)\triangleq \sum_{n=0}^{N-1}x(n)e^{-jwn}
+$$
+这里只是把$w_k$替换成了$w$. 这个频谱的插值的形成，是投影到一个新的正弦函数上。最有意义的是, $x$假定为一个时间有限信号的$N$个采样。如果这个信号存在于时域$[0,N-1]$之间, 信号和正弦函数的内积正如上面的等式所述。对于时间有限信号, time-limited signals, 这种插值、内插是理想的。
+
+The interpolation operator 使用一个整数因子$L$来插值一个信号。
+$$
+INTERP_{L,k^{'}}(X)\triangleq X(w_{k^{'}}),k=0,1,\dotsi,M-1,\space M\triangleq LN
+$$
+既然$X(w_k)\triangleq DFT_{N,k}(x)$是定义在单位量的$N$个根上的。$X(w_{k^{'}})$是定义在单位量的$M=LN$个根上的。我们定义了$w_{k^{'}}$在$w_{k^{'}} \not ={w_k}$的值，这就是ideal bandlimited interpolation.
+
+对于任意的$x\in C^N$, $ZEROPAD_{LN}(x)\leftrightarrow INTERP_L(X)$
+添加零并不会改变频谱。
+
+### 8.4.13 Bandlimited Interpolation in Time
+频域的zero padding,对应于时域的理想带限插值。
+定义:
+For all $x\in C^N$, 任意的整数$L\geqslant1$
+$$
+INTERP_L(x)\triangleq IDFT(ZEROPAD_{LN}(X))
+$$
+可以将插值定理解释为Stretch Theorem. 为了方便性，定义zero-centered rectangular window 操作符。
+
+定义:
+对于任意的$X\in C^N$和任意的奇数$M\lt N$, 我们定义了长度为$M$的even ractangular windowing operation, 即偶长方形加窗操作。
+$$
+RECTWIN_{M,k}(X)\triangleq \begin{cases}
+    X(k), & -\frac{M-1}{2}\leqslant k \leqslant \frac{M-1}{2} \\
+    0, &  \frac{M+1}{2} \leqslant |k| \leqslant \frac{N}{2}\\
+\end{cases}
+$$
+zero-phase rectangular window, 施加到频谱$X$之上, 设置频谱在zero-centered interval of M samples, 之外为0. RECTWIN()是一个理想的低通滤波操作，在频域的，低通的截止频率, in radians per sample 为$w_c=2\pi[(M-1)/2]/N$. 我们表示理想带限插值定理为
+对于任意的$x\in C^N$
+$$
+INTERP_L(x)=IDFT(RECTWIN_N(DFT(STRETCH_L(x))))
+$$
+换言之, 理想带限插值x,by factor $L$,可以通过以下操作实现: 首先拉伸$x$ by 因子$L$, 增加$L-1$个零，在x的相邻采样之间，然后进行DFT, 然后施加理想低通滤波器，最后进行反傅里叶变换操作, IDFT。
+
+附录 A
+
+## 8.7 Linear Time-Invariant Filters and Convolution
+线性时不变滤波器和卷积
+卷积的重要性在于：所有的线性时不变系统都可以用一个卷积来表示。
+$$
+y=h*x
+$$
+其中$x$为输入信号，$y$为输出信号，$h$为数字滤波器
+
+脉冲impulse,或unit pulse单位脉冲信号定义为
+$$
+\delta(n)\triangleq\begin{cases}
+    1, & n=0\\
+    0, & n\not ={0}
+\end{cases}
+$$
+$y=h*\delta=h$, 所以$h$就是滤波器的脉冲响应函数
+
+所有的线性时不变系统LTI都可完全由脉冲响应来描述。
+
+对于一个长度为$N$的有限冲激响应滤波器,Finite Impulse Response, FIR filter，h，来说，我们需要再单位元上至少有N个采样，才能使得$H(w)$在频域上有足够的采样值。
+$$
+|Y(k)| = |H(w_k)X(k)|=G(k)(X(k))
+$$
+幅度频率响应$G(k)$是滤波器在频率$w_k$上的增益gain,
+相位频率响应$\Theta(k)$,叠加到信号的相位上去,
+
+## 8.8 附录B:Statistical Signal Processing
+随机信号处理
+相关性
+### 8.8.1 Cross-Correlation
+交叉相关,两个信号$x,y \in C^N$的相关性定义为
+$$
+r_{xy}(l)\triangleq \frac{1}{N}(x\circledast y)(l)\triangleq \\
+\frac{1}{N}\sum_{n=0}^{N-1}\overline{x(n)}y(n+l), l=0,1,2,\dotsi,N-1
+$$
+$l$是一个整数常数。sample cross-correlation, 互相关性.the so-called expected value of the lagged products in random signals $x$ and $y$. denoted by $\varepsilon\{ x(n)y(n+l) \}$
+The expected value must be computed by averaging $x(n)y(n+l)$ over many realizations of the stochastic process $x$ and $y$.
+That is, 每一次掷骰子, 我们在所有测试中，我们得到了$x(\cdot),y(\cdot)$,我们可以平均$x(n)y(n+l)$,以得到数学期望。这个值被称为ensemble average, 总体均值。如果这个信号时均衡的，stationary, 它的特性是时不变的，那么我们就可以经过时间上的平均，来预测期望值。
+换句话说, 均衡的噪声信号，时间平均等效总体均值。只对恒定随机过程有效。
+互相关性的DFT被称为互频谱密度，或cross-power spectrum, 互功率谱密度，或简称为互频谱。交叉谱密度。
+
+我们定义unbiased cross-correlation, 无偏互相关,
+$$
+\hat{r}_{xy}(l)\triangleq \frac{1}{N-1-l}\sum_{n=0}^{N-l}\overline{x(n)}y(n+l), l=0,1,2,\dotsi,L-1
+$$
+where我们选择$L << N$,比如$L=\sqrt{N}$,无偏，指的是和除以$N-l$而不是$N$
+periodogram method of spectral estimation, 我们不是计算$x$,$y$的互相关，然后做DFT来评估互谱密度，而是采样信号的每一块的互相关，对每一块进行DFT,然后求平均来得到最终的互谱估计。
+
+### 8.8.2 互相关的应用
+**匹配滤波器**
+互相关函数广泛应用在模式识别和信号检测里。我们知道将一个信号投影到另一个信号是一种方式用来测量第二个信号由多少存在于第一个信号。可以用来检测复杂信号中是否存在已知信号的存在。
+
+例如信号$x(n)$里包含真正的信号$s(n)$和加性测量噪声$e(n)$,x在s上的投影为
+$$
+P_s(x)=P_s(s)+Ps(e) \approx s
+$$
+任何随机，零平均的噪声在一个特定信号上的投影接近于零。另一个术语，描述同样过程，被称为matched filtering, 匹配滤波。对信号$x$的匹配滤波器的冲激响应由$FLIP(x)$来表示。在时域上翻转$x$, 我们将filtering实现的卷积转换为一个互相关操作。
+
+**FIR System Identification**
+有限冲激响应的系统特征
+从输入、输出的测量估计冲激响应，被称为系统辨识。
+互相关可以用来计算一个滤波器的冲激响应,
+$$
+x\circledast y \leftrightarrow \overline{X}\cdot Y=\overline{X}\cdot(H\cdot X)=H\cdot |X|^2
+$$
+系统的频率响应等于输入输出互谱除以输入能量谱
+$$
+H=\frac{\overline{X}\cdot Y}{|X|^2}
+$$
+This relation can be written as, 互谱密度，和输入功率谱密度
+$$
+H(w)=\frac{R_{xy}(w)}{R_{xx}(w)}
+$$
+对上式的两边乘以$R_{xx}(w)$, 进行反DTFT变换，，我们得到了时域的关系
+$$
+h*r_{xx} = r_{xy}
+$$
+where $r_{xy}$可以写作$x\circledast y$, 滤波器的输入和输出的互相关等于滤波器的冲激响应与输入信号的自相关的卷积。
+
+可以用Matlab程序计算这些关系.
+
+### 8.8.3 Autocorrelation
+信号自己的互相关叫做自相关函数
+$$
+r_x(l)\triangleq \frac{1}{N}(x\circledast x)(l)=\frac{1}{N}\sum_{n=0}^{N-1}\overline{x(n)}x(n+l)
+$$
+自相关函数是Hermitian的:
+$$
+r_x(-l) = \overline{r_x(l)}
+$$
+当$x$是实数时，它的自相关函数是对称的。是实偶函数。
+非偏采样自相关, unbiased sample autocorrelation,
+$$
+\hat{r}_x(l)\triangleq \frac{1}{N-l}\sum_{n=0}^{N-1}\overline{x(n)}x(n+l), l=0,1,2,\dotsi,L-1
+$$
+自相关函数$r_x(n)$的DFT就是功率谱密度(PSD), power spectrum, 通常表示为
+$$
+R_x(k)\triangleq DFT_k(r_x)
+$$
+一个稳定随机过程的真PSD是真自相关函数的傅里叶变换，因此上面的定义提供了PSD的采样估计值。
+
+**Periodogram Method for Power Spectrum Estimation**
+功率谱估计的周期图方法,
+正如在互谱场景，我们也可以使用周期图方法来计算功率谱估计。就是，我们可以估计功率谱为许多采样自相关的DFT的平均, 对一个长信号，按块block计算, 而不是根据所有的数据估计一个自相关，然后做DFT.根据相关性定理, 等同于信号block的平均平方幅度的DFT。let $x_m$表示信号$x$的第$mth$块，让$M$表示block数，那么PSD估计可表示为:
+$$
+\hat{R_x} = \frac{1}{M}|DFT_k(x_m)|^2
+$$
+However, 注意到$|X_m|^2 \leftrightarrow x\circledast x$是一个循环相关表达式。为避免循环，我们可以在时域添加零填充。i.e. 我们可以替换$x_m$之上的采样用$x_m,0,\dotsi,0$. 注意到wrap-around problem解决了之后，估计值是偏的。biased。 为了修补这个问题，我们可以使用triangular window, Bartlett windown, 施加权重，来去除这些偏置。
+
 
 
 
