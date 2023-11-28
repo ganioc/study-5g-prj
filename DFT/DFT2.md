@@ -696,7 +696,41 @@ $$
 $$
 However, 注意到$|X_m|^2 \leftrightarrow x\circledast x$是一个循环相关表达式。为避免循环，我们可以在时域添加零填充。i.e. 我们可以替换$x_m$之上的采样用$x_m,0,\dotsi,0$. 注意到wrap-around problem解决了之后，估计值是偏的。biased。 为了修补这个问题，我们可以使用triangular window, Bartlett windown, 施加权重，来去除这些偏置。
 
+### 8.8.4 Coherence
+相干性,
+相干函数,coherence function, 功率谱密度，互谱密度
+$$
+\Gamma_{xy}(k)\triangleq \frac{R_{xy}(k)}{\sqrt{R_x(k)R_y(k)}}
+$$
+这些值可以预测，通过平均$\overline{X(k)}Y(k)$, $|X(k)|^2$和$|Y(k)|^2$ over 连续的信号blocks.Let $\{\cdot\}$来表示时间上的平均。
+$$
+\hat{\Gamma}_{xy}(k)\triangleq \frac{\{ \overline{X(k)}Y(k) \}}{\sqrt{\{|X(k)|^2 \}\{ |Y(k)|^2 \}}}
+$$
+幅度平方相关$|\Gamma_{xy}(k)|^2$是一个实函数，在0和1之间取值，衡量在各个频率点，DFT bin number k上的互相关值。
 
+例如,$y$是$x$通过LTI filtering 操作生成的
+$$
+y=h*x \implies Y(k)=H(k)X(k)
+$$
+此时相关函数为
+$$
+\hat{\Gamma}_{xy}(k)\triangleq \frac{\overline{X(k)}Y(k)}{|X(k)|\cdot |Y(k)|} = \frac{H(k)}{|H(k)|}
+$$
+相关性与输入信号无关，只与系统的传递函数有关。
+幅度的绝对值为1，如果$x$和$y$是非相关的噪声过程，相关性收敛到0.
+
+## 附录C: 相似性原理
+The similarity Theorem基本上限于连续时间场景。如果在时域上拉伸一个信号$\alpha$因子，那么频域上被压缩同样的$\alpha$因子。
+插值定理, DFT的， 将一个离散时间信号延伸一个整数因子$\alpha$, filling in between samples with zeros, 对应于在频率上围绕单位圆重复$\alpha$次。As a result, baseband copy of the spectrum 在宽度上收缩了一个因子$\alpha$,相对于$2\pi$而言。如果对信号进行插值扩展的话，对应于repeated spectrum 所有的spurious spectral copies zeroed out. 
+总结一下, Interpolation DFT原理可以被看做离散时间上的类似的FT傅里叶变换原理。
+
+定理:
+对所有的连续时间函数$x(t)$处理傅里叶变换
+$$
+STRETCH_{\alpha}(x)\leftrightarrow\frac{1}{|\alpha|}STRETCH_{(1/\alpha)}(X)
+$$
+where, $STRETCH_{\alpha,t}(x)\triangleq x(\alpha t)$
+$\alpha$是一个非零的实数，abscissa scaling factor,x轴比例因子
 
 
 
